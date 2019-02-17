@@ -1,0 +1,331 @@
+        html,
+        body,
+        div,
+        span,
+        applet,
+        object,
+        iframe,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        blockquote,
+        pre,
+        a,
+        abbr,
+        acronym,
+        address,
+        big,
+        cite,
+        code,
+        del,
+        dfn,
+        em,
+        img,
+        ins,
+        kbd,
+        q,
+        s,
+        samp,
+        small,
+        strike,
+        sub,
+        sup,
+        tt,
+        var,
+        b,
+        u,
+        i,
+        center,
+        dl,
+        dt,
+        dd,
+        ol,
+        ul,
+        li,
+        fieldset,
+        form,
+        label,
+        article,
+        aside,
+        canvas,
+        details,
+        embed,
+        figure,
+        figcaption,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        output,
+        ruby,
+        section,
+        summary,
+        time,
+        mark,
+        audio,
+        video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+        /* HTML5 display-role reset for older browsers */
+        
+        article,
+        aside,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        section {
+            display: block;
+        }
+        
+        ol,
+        ul {
+            list-style: none;
+        }
+        
+        blockquote,
+        q {
+            quotes: none;
+        }
+        
+        blockquote:before,
+        blockquote:after,
+        q:before,
+        q:after {
+            content: "";
+            content: none;
+        }
+        
+        input:-moz-placeholder,
+        textarea:-moz-placeholder {
+            color: #828282;
+        }
+        
+        input:-ms-input-placeholder,
+        textarea:-ms-input-placeholder {
+            color: #828282;
+        }
+        
+        input::-webkit-input-placeholder,
+        textarea::-webkit-input-placeholder,
+        {
+            color: #828282;
+        }
+        /* Hides from IE-mac \*/
+        
+        body {
+            background: #d4dbe3 url(../img/bbc.png);
+            height: 100%;
+            position: relative;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .top-nav {
+            position: absolute;
+            width: 100%;
+            height: 38px;
+        }
+        
+        .top-nav-left {
+            position: absolute;
+            left: 0;
+            width: 50%;
+            height: 38px;
+        }
+        
+        .top-nav-right {
+            position: absolute;
+            right: 0;
+            width: 50%;
+            height: 38px;
+        }
+        
+        .top-nav-center {
+            position: relative;
+            z-index: 1;
+            width: 1150px;
+            height: 38px;
+            margin: 0 auto;
+            background: url(../img/top-nav-center.png) no-repeat;
+            background-size: 1300px 38px;
+        }
+        
+        .container {
+            position: relative;
+            width: 1150px;
+            margin: 0 auto;
+            text-align: center;
+            height: 100%;
+            margin-bottom: 80px;
+        }
+        
+        .container-background {
+            position: absolute;
+            z-index: -1;
+            width: 1150px;
+            height: 100%;
+            margin: 0 auto;
+            opacity: .7;
+            background: #fff;
+        }
+        
+        .container-left {
+            float: left;
+            width: 17px;
+            height: 100%;
+        }
+        
+        .container-right {
+            float: right;
+            width: 17px;
+            height: 100%;
+        }
+        
+        .container-body {
+            width: 1150px;
+            margin: 0 auto;
+            padding-top: 33px;
+            height: 100%;
+        }
+        
+        .news-second-links {
+            width: 675px;
+            margin-top: 50px;
+            padding-bottom: 14px;
+            color: rgba(82, 168, 236, 1);
+            border-bottom: 1px solid rgba(82, 168, 236, 1);
+        }
+        
+        .news-second-links li,
+        .second-links li {
+            display: inline-block;
+        }
+        
+        .second-links li img {
+            vertical-align: bottom;
+        }
+        
+        .news-second-links li a,
+        .second-links li a {
+            font-family: 'å®‹ä½“';
+            font-size: 14px;
+            text-decoration: none;
+            color: rgba(82, 168, 236);
+        }
+        
+        .news-second-links li a:hover,
+        .second-links li a:hover {
+            text-decoration: underline;
+        }
+        
+        .news-second-links {
+            line-height: 40px;
+            width: 1150px;
+            height: 40px;
+            margin-top: 22px;
+            padding-bottom: 0;
+            text-align: left;
+            border: 1px solid #ddd;
+            background: url(../image/daohang.png);
+            background-size: 1150px 40px;
+        }
+        
+        .news-second-links li img {
+            vertical-align: text-bottom;
+        }
+        
+        .di {
+            height: 30px;
+            width: 100%;
+            margin-left: 0px;
+            font-size: 15px;
+            color: #FFF;
+            margin-top: 0px;
+            background-color: rgba(83, 126, 171, 0.87);
+            line-height: 2;
+            text-align: center;
+        }
+        
+        .di a:link {
+            text-decoration: none;
+            color: white;
+        }
+        
+        .di a:hover {
+            text-decoration: underline;
+            color: white;
+        }
+        
+        .footer {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            margin-left: -575px;
+            width: 1150px;
+            height: 80px;
+            background-color: #fff;
+        }
+        
+        .homepage-footer {
+            padding-top: 10px;
+        }
+        
+        .footer p {
+            font-size: 14px;
+            line-height: 80px;
+            height: 80px;
+            color: #858483;
+        }
+        
+        .homepage-footer p {
+            line-height: 20px;
+            height: 20px;
+            text-align: center;
+        }
+        
+        .homepage-footer p span {
+            margin: 0 5px;
+            color: #db4f03;
+        }
+        
+        .content h1 {
+            font-size: 25px;
+            color: rgba(83, 126, 171, 0.87);
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .content p {
+            color: dimgrey;
+            margin: 10px 80px;
+            text-indent: 2em;
+            text-align: left;
+            line-height: 40px;
+        }
+        
+        .content p:first-letter {
+            color: #3c8ebd;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        
+        .content p:last-child {
+            margin-bottom: 30px;
+        }

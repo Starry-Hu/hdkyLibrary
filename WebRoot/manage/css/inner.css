@@ -1,0 +1,34 @@
+.must::after {
+    content: "*";
+    color: red;
+    font-size: 14px;
+}
+
+form .input-error {
+    border-color: #ec6e6e;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+}
+
+
+/*未输入的提示信息*/
+
+form span {
+    color: red;
+    font-size: 14px;
+}
+
+/* 内部的标题和返回按钮区域 */
+#innerTop{
+	margin-bottom:20px;
+}
+
+#innerTop button {
+    float: left;
+}
+
+#innerTop div {
+	width:85%;
+    display: inline-block;
+    text-align: center
+}

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.hdky.library.daoExtend.SectionExtendMapper">
+  
+  <select id="selectByCid" parameterType="java.lang.String" resultType="cn.edu.hdky.library.pojo.SectionExtend">
+  	SELECT
+	A.id,
+	A.`name`,
+	A.`level`,
+	A.parentId,
+	B.`name` AS parentName,
+	A.address,
+	A.createTime,
+	C.adminName AS createUser,
+	A.updateTime,
+	D.adminName AS updateUser 
+	FROM
+	section A
+	INNER JOIN section B ON A.parentId = B.id
+	INNER JOIN admin C ON C.id = A.createUser
+	LEFT JOIN admin D ON D.id = A.updateUser 
+	WHERE
+	A.id = #{cid} 
+	AND A.isDel = 0;
+  </select>
+  
+  
+  <select id="selectAllChildrenByPid" parameterType="java.lang.String" resultType="cn.edu.hdky.library.pojo.SectionExtend">
+  	SELECT
+	A.id,
+	A.`name`,
+	A.`level`,
+	A.parentId,
+	B.`name` AS parentName,
+	A.address,
+	A.createTime,
+	C.adminName AS createUser,
+	A.updateTime,
+	D.adminName AS updateUser 
+	FROM
+	section A
+	INNER JOIN section B ON A.parentId = B.id
+	INNER JOIN admin C ON C.id = A.createUser
+	LEFT JOIN admin D ON D.id = A.updateUser 
+	WHERE
+	A.`level` = 2 
+	AND A.parentId = #{pid} 
+	AND A.isDel = 0 
+	ORDER BY
+	A.createTime;
+  </select>
+  
+  <select id="selectAllChildren" resultType="cn.edu.hdky.library.pojo.SectionExtend">
+  	SELECT
+	A.id,
+	A.`name`,
+	A.`level`,
+	A.parentId,
+	B.`name` AS parentName,
+	A.address,
+	A.createTime,
+	C.adminName AS createUser,
+	A.updateTime,
+	D.adminName AS updateUser 
+	FROM
+	section A
+	INNER JOIN section B ON A.parentId = B.id
+	INNER JOIN admin C ON C.id = A.createUser
+	LEFT JOIN admin D ON D.id = A.updateUser 
+	WHERE
+	A.`level` = 2 
+	AND A.isDel = 0 
+	ORDER BY
+	A.createTime;
+  </select>
+  
+  
+  <select id="selectByPid" parameterType="java.lang.String" resultType="cn.edu.hdky.library.pojo.SectionExtend">
+  	SELECT
+	A.id,
+	A.`name`,
+	A.`level`,
+	A.address,
+	A.createTime,
+	C.adminName AS createUser,
+	A.updateTime,
+	D.adminName AS updateUser 
+	FROM
+	section A
+	INNER JOIN admin C ON C.id = A.createUser
+	LEFT JOIN admin D ON D.id = A.updateUser 
+	WHERE
+	A.id = #{pid} 
+	AND A.`level` = 1 
+	AND A.isDel = 0;
+  </select>
+  
+  <select id="selectAllParents" resultType="cn.edu.hdky.library.pojo.SectionExtend">
+	SELECT
+	A.id,
+	A.`name`,
+	A.`level`,
+	A.address,
+	A.createTime,
+	C.adminName AS createUser,
+	A.updateTime,
+	D.adminName AS updateUser 
+	FROM
+	section A
+	INNER JOIN admin C ON C.id = A.createUser
+	LEFT JOIN admin D ON D.id = A.updateUser 
+	WHERE
+	A.`level` = 1 
+	AND A.isDel = 0 
+	ORDER BY
+	A.createTime;
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+</mapper>

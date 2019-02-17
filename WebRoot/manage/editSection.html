@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/inner.css">
+    <title>编辑新闻内容</title>
+    
+</head>
+
+<body>
+    <div id="main">
+        <div id="innerTop">
+            <button class="btn" onclick=javascript:history.back(-1);>返回</button>
+            <div>
+                <h3>编辑栏目</h3>
+            </div>
+        </div>
+
+        <form>
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label for="sname" class="must">栏目名称</label>
+                    <input type="text" class="form-control" id="sname" placeholder="请输入栏目名称">
+                    <span style="display: none;">栏目名称不能为空！</span>
+                </div>
+                <div class="form-group col-6">
+                    <label for="level" class="must">栏目等级</label>
+                    <br>
+                    <label class="radio-inline">
+                <input type="radio" name="level" value="1"> 1级
+            </label>
+                    <label class="radio-inline">
+                <input type="radio" name="level" value="2"> 2级
+            </label>
+                    <span style="display: none;">等级不能为空！</span>
+                </div>
+                <div class="form-group col-6">
+                    <label for="address" class="must">栏目链接地址</label>
+                    <input type="text" class="form-control" id="address" placeholder="请输入栏目链接地址">
+                    <span style="display: none;">栏目链接地址不能为空！</span>
+                </div>
+                <div class="form-group col-6" id="pid" style="display:none">
+                    <label for="parentId" class="must">所属父栏目</label>
+                    <select id="parentId" class="form-control" required>
+                <option selected value="none">请选择所属父栏目</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+                    <span style="display: none;">二级栏目所属父栏目不能为空！</span>
+                </div>
+            </div>
+
+        </form>
+
+        <button class="btn btn-primary" id="submit">上传</button>
+    </div>
+
+
+
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/checkValidForm.js"></script>
+
+    <script type="text/javascript">
+        // 动态显示父级section下拉框
+        getAllParentSection();
+        // 回显原新闻内容
+        var str = window.location.href;
+        var id = str.substr(str.indexOf('=') + 1);
+        getOldSectionInfo(id);
+
+        // 鼠标划开时检查必选项
+        $('#sname').blur(checkName);
+        $('#address').blur(checkAddress);
+        // 点击时动态渲染pid的出现
+        $("input[name='level']").click(checkLevel);
+        $('#parentId').blur(checkParent);
+
+        $('input').on('focus', function() {
+            $(this).removeClass('input-error');
+        });
+
+        // 提交更新的新闻信息
+        $('#submit').click(function() {
+            if (checkName() && checkAddress() && checkLevel() && checkParent()) {
+                var path = location.protocol + "//" + window.location.host +
+                    "/Library/section/updateSection";
+                $.ajax({
+                    type: "post",
+                    url: path,
+                    data: {
+                        id: id,
+                        name: $('#sname').val(),
+                        level: $("input[name='level']:checked").val(),
+                        address: $('#address').val(),
+                        parentId: $('#parentId').val(),
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        alert(response.msg);
+                    }
+                });
+            }
+        })
+    </script>
+</body>
+
+</html>

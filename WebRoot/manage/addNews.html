@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/inner.css">
+
+    <title>添加新闻内容</title>
+    
+</head>
+
+<body>
+    <div id="main">
+    	<h3>编辑新闻</h3>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label for="title" class="must">新闻标题</label>
+                    <input type="text" class="form-control" id="title" placeholder="请输入新闻标题">
+                    <span style="display: none;">新闻标题不能为空！</span>
+                </div>
+                <div class="form-group col-6">
+                    <label for="section" class="must">所属版块</label>
+                    <select id="section" class="form-control" required>
+                        <option selected value="none">请选择所属版块</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <span style="display: none;">所属版块不能为空！</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="editor" class="must">新闻内容</label>
+                <div id="editor"></div>
+            </div>
+            <div class="form-group">
+                <input type="file" name="attachment" class="file" id="attachment" multiple=”multiple
+                 onchange="upload()"/>
+            </div>
+        </form>
+
+        <button class="btn btn-primary" id="submit">上传</button>
+    </div>
+
+
+
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/wangEditor.min.js"></script>
+    <script src="js/createEditor.js"></script>
+    <script src="js/checkValidForm.js"></script>
+
+    <script type="text/javascript">
+	 	// 加载富文本编辑器
+	    createEditor();
+	    // 动态显示section下拉框
+	    getChildSectionsInSelect();
+
+	    
+	    // 鼠标划开时检查必选项
+	    $('#title').blur(checkTitle);
+	    $('#section').blur(checkSection);
+	
+	    $('input').on('focus', function() {
+	        $(this).removeClass('input-error');
+	    });
+	    
+	    function upload(){
+	    	var path = location.protocol + "//" + window.location.host +
+            "/Library/news/uploadAttachment";
+	    	
+	    	 var files = $('input[name="attachment"]').prop('files');//获取到文件列表
+
+	         if (files.length == 0) {
+	             alert('请选择文件');
+	             return;
+	         } else {
+	             var reader = new FileReader();//新建一个FileReader
+	             reader.readAsText(files[0], "UTF-8");//读取文件
+	             reader.onload = function (evt) { //读取完文件之后会回来这里
+	                 var fileString = evt.target.result;
+	                 //post方式上传图片到控制器
+			$.ajax({
+	            url : path,
+	            type : "post",
+	            datatype : "json",
+	            data:{
+	            	attachment: fileString,
+	            }
+	            success:function(response){
+	            	console.log(response);
+	                if(response.errno == 0){
+	                    alert("上传文件成功");
+	                    alert(response.data);
+	                }else{
+	                    alert("啊哦，服务器开小差了！");
+	                }
+	            }
+	        });
+	    }
+	         }
+	    	 };
+	
+	    // 提交添加的新闻信息
+	    $('#submit').click(function() {
+	        if (checkTitle() && checkSection()) {
+	            var path = location.protocol + "//" + window.location.host +
+	                "/Library/news/addNews";
+	            $.ajax({
+	                type: "post",
+	                url: path,
+	                data: {
+	                    title: $('#title').val(),
+	                    sectionId: $('#section').val(),
+	                    content: editor.txt.html(),
+	                },
+	                dataType: "json",
+	                success: function(response) {
+	                    alert(response.msg);
+	                }
+	            });
+	        }
+	    })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/inner.css">
+
+    <title>编辑管理员</title>
+</head>
+
+<body>
+    <div id="main">
+        <div id="innerTop">
+            <button class="btn" onclick=javascript:history.back(-1);>返回</button>
+            <div>
+                <h3 id="belong"></h3>
+                <h3>编辑管理员</h3>
+            </div>
+        </div>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label for="aid" class="must">管理员uuid</label>
+                    <input type="text" class="form-control" id="aid" placeholder="请输入管理员uuid" disabled>
+                    <span style="display: none;">管理员uuid不能为空！</span>
+                </div>
+                <div class="form-group col-6">
+                    <label for="adminId" class="must">管理员账号（作为登录 唯一性）</label>
+                    <input type="text" class="form-control" id="adminId" placeholder="请输入管理员账号" disabled>
+                    <span style="display: none;">管理员账号不能为空！</span>
+                </div>
+                <div class="form-group col-6">
+                    <label for="adminName" class="must">管理员名称</label>
+                    <input type="text" class="form-control" id="adminName" placeholder="请输入管理员名称">
+                    <span style="display: none;">管理员名称不能为空！</span>
+                </div>
+                <div class="form-group col-6">
+                    <label for="password" class="must">输入密码</label>
+                    <input type="password" class="form-control" id="password" placeholder="请输入密码">
+                    <span style="display: none;">密码不能为空！</span>
+                </div>
+                <div class="form-group col-6">
+                    <label for="password2" class="must">再次输入密码</label>
+                    <input type="password" class="form-control" id="password2" placeholder="请再次输入密码">
+                    <span style="display: none;">二次密码不能为空！</span>
+                </div>
+
+                <div class="form-group col-6">
+                    <label for="section" class="must">管理员权限</label>
+                    <select id="section" class="form-control" required>
+                        <option selected value="none">请选择权限</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <span style="display: none;">权限不能为空！</span>
+                </div>
+            </div>
+        </form>
+
+        <button class="btn btn-primary" id="submit">上传</button>
+    </div>
+
+
+
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/checkValidForm.js"></script>
+
+    <script type="text/javascript">
+        // 回显原管理员内容
+        var str = window.location.href;
+        var id = str.substr(str.indexOf('=') + 1);
+        getOldAdminInfo(id);
+
+        // 鼠标划开时检查必选项
+        $('#adminId').blur(checkAdminId);
+        $('#adminName').blur(checkAdminName);
+        $('#password').blur(checkPsw);
+        $('#password2').blur(checkPsw);
+
+        $('input').on('focus', function() {
+            $(this).removeClass('input-error');
+        });
+
+        // 提交添加的新闻信息
+        $('#submit').click(function() {
+            if (checkAdminId() && checkAdminName() && checkPsw()) {
+                var path = location.protocol + "//" + window.location.host +
+                    "/Library/admin/updateAdmin";
+                $.ajax({
+                    type: "post",
+                    url: path,
+                    data: {
+                        id: $('#aid').val(), // uuid 即上述id
+                        adminId: $('#adminId').val(),
+                        adminName: $('#adminName').val(),
+                        password1: $('#password').val(),
+                        password2: $('#password2').val(),
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        alert(response.msg);
+                    }
+                });
+            }
+        })
+    </script>
+</body>
+
+</html>

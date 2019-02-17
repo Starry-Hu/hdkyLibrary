@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tree.css">
+
+
+    <title>后台管理首页</title>
+    <style>
+        body {
+            background-image: url('images/bbc.png');
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        table {
+            font-size: 14px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="center">
+
+        <div id="head"></div>
+        <div id="log"></div>
+        <div class="wrap">
+            <div class="header">
+                <span class="left">华电科院图书馆系统后台管理界面</span>
+                <div class="right">
+                    <span class="name" id="name">欢迎您 xxx </span>
+                    <span id="change-pw" onclick="changePsw()">修改密码</span>
+                    <span><a style="color:#fff;text-decoration: none" href="#" id="logout" onclick="Logout()">退出</a></span>
+                </div>
+            </div>
+        </div>
+        <div id="main" class="row">
+            <div id="side" class="col-2">
+                <div class="nav flex-column nav-pills" id="tablist" aria-orientation="vertical">
+                    <div class="tree well">
+                        <ul id="rootUL" style="padding-left: 0px">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-10">
+                <iframe src="newsList.html?sectionId=5CC74DC0472C4FBEBAF5CCECD16FA67F" id="iframePage" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                </iframe>
+            </div>
+
+            <footer>
+                版权所有 @ DreamTech工作组
+            </footer>
+
+        </div>
+    </div>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/common.js"></script>
+
+    <script>
+        // 获取当前登录的管理员
+        getLoginedAdmin();
+        // 获取树状导航
+        getAllSectionsToTree();
+    </script>
+    <script type="text/javascript">
+        $(function() {
+        	// 动态的展开
+            $('.tree li.parent_li > span').on('click', function(e) {
+                var children = $(this).parent('li.parent_li').find(' > ul > li');
+                if (children.is(":visible")) {
+                    children.hide('fast');
+                    $(this).attr('title', '展开');
+                } else {
+                    children.show('fast');
+                    $(this).attr('title', '关闭');
+                }
+                e.stopPropagation();
+            });
+            
+            // 点击显示样式
+            $(".children_span > a").on('click',function(){
+            	// 其他的移除该样式
+            	$('.children_span').removeClass("focusChild");
+            	// 被点击的添加样式
+                $(this).parent("span").addClass("focusChild");
+            })
+        });
+    </script>
+
+
+</body>
+
+</html>

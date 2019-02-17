@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.hdky.library.daoExtend.NewsExtendMapper">
+
+  <select id="selectById" parameterType="java.lang.String" resultType="cn.edu.hdky.library.pojo.NewsExtend">
+  	SELECT 
+  	A.id,
+  	A.sectionId,
+  	B.`name` as sectionName,
+  	A.title,
+  	A.content,
+  	A.createTime,
+  	C.adminName as createUser,
+  	A.updateTime,
+  	D.adminName as updateUser,
+  	A.isDel 
+  	FROM news A 
+  	INNER JOIN section B ON A.sectionId = B.id 
+  	INNER JOIN admin C ON C.id = A.createUser 
+  	LEFT JOIN admin D ON D.id = A.updateUser
+  	WHERE A.id = #{id} AND A.isDel = 0;
+  </select>
+  
+  <select id="selectAllBySection" parameterType="java.lang.String" resultType="cn.edu.hdky.library.pojo.NewsExtend">
+	SELECT
+	A.id,
+	A.sectionId,
+	B.`name` AS sectionName,
+	A.title,
+	A.content,
+	A.createTime,
+	C.adminName AS createUser,
+	A.updateTime,
+	D.adminName AS updateUser,
+	A.isDel 
+	FROM
+	news A
+	INNER JOIN section B ON A.sectionId = B.id
+	INNER JOIN admin C ON C.id = A.createUser
+	LEFT JOIN admin D ON D.id = A.updateUser 
+	WHERE
+	A.isDel = 0 AND A.sectionId = #{sectionId}
+	ORDER BY
+	A.createTime;
+  </select>
+  
+    <select id="selectNewsBySectionWithPage" resultType="cn.edu.hdky.library.pojo.NewsExtend">
+  	SELECT
+	A.id,
+	A.sectionId,
+	B.`name` AS sectionName,
+	A.title,
+	A.content,
+	A.createTime,
+	C.adminName AS createUser,
+	A.updateTime,
+	D.adminName AS updateUser,
+	A.isDel 
+	FROM
+	news A
+	INNER JOIN section B ON A.sectionId = B.id
+	INNER JOIN admin C ON C.id = A.createUser
+	LEFT JOIN admin D ON D.id = A.updateUser 
+	WHERE
+	A.isDel = 0 
+	AND A.sectionId = #{sectionId} 
+	ORDER BY
+	A.createTime 
+	LIMIT #{startIndex},#{pageSize};
+  </select>
+  
+  
+  
+  
+  	<!-- 暂时用不到 -->
+    <select id="selectAll" resultType="cn.edu.hdky.library.pojo.NewsExtend">
+  	SELECT
+	A.id,
+	A.sectionId AS sectionId,
+	B.`name` AS sectionName,
+	A.title,
+	A.content,
+	A.createTime,
+	C.adminName AS createUser,
+	A.updateTime,
+	D.adminName AS updateUser 
+	FROM
+	news A
+	INNER JOIN section B ON A.sectionId = B.id
+	INNER JOIN admin C ON C.id = A.createUser
+	LEFT JOIN admin D ON D.id = A.updateUser 
+	WHERE
+	A.isDel = 0 
+	ORDER BY
+	A.createTime;
+  </select>
+  
+  <select id="selectNewsWithPage" resultType="cn.edu.hdky.library.pojo.NewsExtend">
+  	SELECT
+	A.id,
+	B.`name` AS sectionName,
+	A.title,
+	A.content,
+	A.createTime,
+	C.adminName AS createUser,
+	A.updateTime,
+	D.adminName AS updateUser 
+	FROM
+	news A
+	INNER JOIN section B ON A.sectionId = B.id
+	INNER JOIN admin C ON C.id = A.createUser
+	LEFT JOIN admin D ON D.id = A.updateUser 
+	WHERE
+	A.isDel = 0 
+	ORDER BY
+	A.createTime 
+	LIMIT #{startIndex},
+	#{pageSize};
+  </select>
+</mapper>
