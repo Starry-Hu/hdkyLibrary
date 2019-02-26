@@ -88,7 +88,7 @@ iframe {
 #head {
     height: 35px;
     width: 1036px;
-    background-image: url('../images/header.jpg');
+    background-image: url('../images/header.png');
     background-repeat: no-repeat
 }
 
@@ -127,7 +127,7 @@ iframe {
 }
 
 footer {
-    background-color: #537eab;
+    background-color: #3b68bb;
     width: 100%;
     text-align: center;
     color: #fff;

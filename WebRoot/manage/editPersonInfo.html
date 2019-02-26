@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/inner.css">
 
-    <title>编辑管理员</title>
+    <title>修改个人信息</title>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
         <div id="innerTop">
             <button class="btn" onclick=javascript:history.back(-1);>返回</button>
             <div>
-                <h3>编辑管理员</h3>
+                <h3>修改个人信息</h3>
             </div>
         </div>
         <form>
@@ -38,19 +38,24 @@
                     <span style="display: none;">管理员名称不能为空！</span>
                 </div>
                 <div class="form-group col-6">
-                    <label for="password" class="must">输入密码</label>
-                    <input type="password" class="form-control" id="password" placeholder="请输入密码">
-                    <span style="display: none;">密码不能为空！</span>
+                    <label for="oldPassword" class="must">原密码</label>
+                    <input type="password" class="form-control" id="oldPassword" placeholder="请输入原密码">
+                    <span style="display: none;">原密码不能为空！</span>
                 </div>
                 <div class="form-group col-6">
-                    <label for="password2" class="must">再次输入密码</label>
+                    <label for="password" class="must">新密码</label>
+                    <input type="password" class="form-control" id="password" placeholder="请输入密码">
+                    <span style="display: none;">新密码不能为空！</span>
+                </div>
+                <div class="form-group col-6">
+                    <label for="password2" class="must">再次输入新密码</label>
                     <input type="password" class="form-control" id="password2" placeholder="请再次输入密码">
-                    <span style="display: none;">二次密码不能为空！</span>
+                    <span style="display: none;">二次新密码不能为空！</span>
                 </div>
 
                 <div class="form-group col-6">
                     <label for="section" class="must">管理员权限</label>
-                    <select id="section" class="form-control" required>
+                    <select id="section" class="form-control" required disabled="disabled">
                         <option selected value="none">请选择权限</option>
                     </select>
                     <span style="display: none;">权限不能为空！</span>
@@ -76,6 +81,7 @@
         // 鼠标划开时检查必选项
         $('#adminId').blur(checkAdminId);
         $('#adminName').blur(checkAdminName);
+        $('#oldPassword').blur(checkOldPsw);
         $('#password').blur(checkPsw);
         $('#password2').blur(checkPsw);
 
@@ -85,9 +91,9 @@
 
         // 提交添加的新闻信息
         $('#submit').click(function() {
-            if (checkAdminId() && checkAdminName() && checkPsw()) {
+            if (checkAdminId() && checkAdminName() && checkOldPsw() && checkPsw()) {
                 var path = location.protocol + "//" + window.location.host +
-                    "/Library/admin/updateAdmin";
+                    "/Library/admin/editMyPassword";
                 $.ajax({
                     type: "post",
                     url: path,
@@ -95,8 +101,9 @@
                         id: $('#aid').val(), // uuid 即上述id
                         adminId: $('#adminId').val(),
                         adminName: $('#adminName').val(),
-                        password1: $('#password').val(),
-                        password2: $('#password2').val(),
+                        oldPassword: $('#oldPassword').val(),
+                        newPassword1: $('#password').val(),
+                        newPassword2: $('#password2').val(),
                     },
                     dataType: "json",
                     success: function(response) {

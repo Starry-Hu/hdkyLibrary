@@ -51,7 +51,7 @@ public class UploadFile {
 //	}
 
 	/**
-	 * 上传文件
+	 * 上传文件（图片/附件）
 	 * @param file 文件
 	 * @param path 原地址
 	 * @return
@@ -63,11 +63,11 @@ public class UploadFile {
 		// 原始名称
 		String originalFilename = file.getOriginalFilename();
 
-		String picPath = "";
+		String filePath = "";
 		String newFileName = "";
-		// 上传图片
+		// 上传文件
 		if (file != null && originalFilename != null && originalFilename.length() > 0) {
-			// 存储图片的路径
+			// 存储文件的路径
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			String dateStr = format.format(new Date());
 			String[] dirs = dateStr.split("-");
@@ -75,11 +75,16 @@ public class UploadFile {
 			for (int i = 0; i < dirs.length; i++) {
 				path += dirs[i] + File.separator;
 			}
-			picPath = createFileDir(path);
-			// 新的图片名称
+			filePath = createFileDir(path);
+			
+			// 新的文件名称
 			newFileName = IDGenerator.generator() + originalFilename.substring(originalFilename.lastIndexOf("."));
-			// 新图片
-			File newFile = new File(picPath + newFileName);
+			// 如果是附件不用改变名称
+			if (path.indexOf("attachment") != -1) {
+				newFileName = originalFilename;
+			}
+			// 新文件
+			File newFile = new File(filePath + newFileName);
 			// 将内存中的数据写入磁盘
 			try {
 				file.transferTo(newFile);
@@ -94,7 +99,7 @@ public class UploadFile {
 //	/**
 //	 * 上传附件
 //	 * @param file 文件
-//	 * @param path 原地址
+//	 * @param path 地址
 //	 * @return
 //	 */
 //	public static String uploadAttach(MultipartFile file, String path) {
@@ -116,9 +121,9 @@ public class UploadFile {
 //			for (int i = 0; i < dirs.length; i++) {
 //				path += dirs[i] + File.separator;
 //			}
-//			attachPath = createAttachDir(path);
+//			attachPath = createFileDir(path);
 //			// 新的附件名称
-//			newFileName = IDGenerator.generator() + originalFilename.substring(originalFilename.lastIndexOf("."));
+//			newFileName = originalFilename;
 //			// 新附件
 //			File newFile = new File(attachPath + newFileName);
 //			// 将内存中的数据写入磁盘

@@ -45,6 +45,17 @@
                 <label for="editor" class="must">新闻内容</label>
                 <div id="editor"></div>
             </div>
+            
+            <div class="form-group">
+                <input type="file" name="attachment" class="file" id="attachment" multiple="multiple"
+                 onchange="handleFile()">
+            </div>
+            
+            <div class="col-12" id="tips">
+                	<p>注意：文本编辑器样式已固定，不必使用编辑器自带样式编辑</p>
+                	<p>标题请选择H1，具体内容回车换行编辑即可，不必添加额外样式</p>
+                	<p>多个文件上传时请分别上传</p>
+            </div>
         </form>
 
         <button class="btn btn-primary" id="submit">上传</button>
@@ -97,7 +108,6 @@
                     path = location.protocol + "//" + window.location.host +
                         "/Library/news/addNews";
                 }
-				alert(path)
                 $.ajax({
                     type: "post",
                     url: path,

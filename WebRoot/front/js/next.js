@@ -52,7 +52,6 @@ $(function() {
                 // 修改标题
                 var $title = $('title');
                 $title.text($baseData.title);
-                
             }
         }
     });

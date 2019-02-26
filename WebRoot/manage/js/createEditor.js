@@ -25,23 +25,3 @@ function createEditor() {
     }
     editor.create();
 }
-
-function uploadAttachment(Attachment) {
-    var attachmentPath = location.protocol + "//" + window.location.host +
-        "/Library/news/uploadAttachment";
-    $.ajax({
-        type: "post",
-        url: attachmentPath,
-        data: {
-            attachment: Attachment
-        },
-        dataType: "json",
-        success: function(response) {
-            // 上传成功
-            if (response.errno == 0) {
-                console.log(response.data);
-                alert("上传附件成功");
-            }
-        }
-    });
-}

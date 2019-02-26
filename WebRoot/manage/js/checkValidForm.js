@@ -153,3 +153,18 @@ function checkPsw() {
      return false;
  }
 }
+
+/* 检查原密码是否填写 */
+function checkOldPsw() {
+    var oldPassword = $('#oldPassword').val();
+    var tips = $('#oldPassword').siblings('span');
+    if (oldPassword == '') {
+        $('#oldPassword').addClass('input-error');
+        tips.css('display', 'inline');
+        return false;
+    } else {
+        $('#oldPassword').removeClass('input-error');
+        tips.css('display', 'none');
+        return true;
+    }
+}

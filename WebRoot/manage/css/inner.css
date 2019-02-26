@@ -32,3 +32,28 @@ form span {
     display: inline-block;
     text-align: center
 }
+
+/* 编辑版块的提示信息 */
+#tips{
+	font-size: 14px;
+	color:red;
+}
+
+
+
+/* 分页的相关样式 */
+
+.pagination-nick button {
+    padding: 5px;
+    margin: 5px;
+    color: #0b6fab;
+}
+
+.pagination-nick .active-nick {
+    color: red;
+}
+
+.pagination-nick input {
+    width: 50px;
+    text-align: center;
+}

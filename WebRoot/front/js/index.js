@@ -165,7 +165,7 @@ window.onload = function () {
 
         $("#siteSearch").click(function () {
             var searchcontent = $("#siteSearchKey").val();
-            window.location.href = 'Search.aspx?SearchText=' + searchcontent;
+            window.location.href = 'http://lib.ncepu.edu.cn/front/sASearch.aspx?keyword=' + searchcontent;
         });
 
 

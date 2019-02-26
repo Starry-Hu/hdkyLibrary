@@ -47,12 +47,15 @@
                 <div class="form-group col-6" id="pid" style="display:none">
                     <label for="parentId" class="must">所属父栏目</label>
                     <select id="parentId" class="form-control" required>
-                <option selected value="none">请选择所属父栏目</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
+		                <option selected value="none">请选择所属父栏目</option>
+		            </select>
                     <span style="display: none;">二级栏目所属父栏目不能为空！</span>
+                </div>
+                
+                <div class="col-12" id="tips">
+                	<p>注意：若该版块为以及板块，其地址填写为#即可</p>
+                	<p>若该二级版块所链接的新闻为内部新闻，其栏目链接地址填写为next.html</p>
+                	<p>若该二级版块所链接的新闻为外部链接，其栏目链接地址填写为相应地址</p>
                 </div>
             </div>
 

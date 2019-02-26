@@ -1,4 +1,21 @@
- /* 管理员相关 */
+ //这里给所有ajax请求添加一个complete函数 
+$.ajaxSetup({
+    complete: function(xhr, status) { //拦截器实现超时跳转到登录页面 
+        // 通过xhr取得响应头 
+        var REDIRECT = xhr.getResponseHeader("REDIRECT");
+        //如果响应头中包含 REDIRECT 则说明是拦截器返回的 
+        if (REDIRECT == "REDIRECT") {
+            var win = window;
+            while (win != win.top) { win = win.top; }
+            alert("您还未登录，请先登录！");
+            //重新跳转到 login.html 
+            win.location.href = xhr.getResponseHeader("CONTENTPATH");
+        }
+    }
+});
+
+
+/* 管理员相关 */
 
  /**
   * 获取当前管理员信息
@@ -14,6 +31,13 @@
              console.log(response);
              if (response.code == 0) {
                  $('#name').text("欢迎您  " + response.data.adminName);
+                 // 点击修改密码
+                 $('#changePsw').click(function (){
+             		var iframePage = $('#iframePage');
+            	    var newSrc = "editPersonInfo.html?id=" + response.data.aid;
+            	    // iframe页面跳转
+            	    iframePage.attr('src', newSrc);
+            	})
              }
          }
      });
@@ -76,7 +100,62 @@
          }
      });
  }
-
+ 
+ 
+/**
+ * 上传附件
+ */
+ function handleFile() {
+     let formData = new FormData(),
+         fs = $('input[name="attachment"]').prop('files');
+     let max_size = 1024 * 1024 * 100
+     
+     if(fs[0].name == 0){
+    	 return;
+     }
+     
+     for (let i = 0; i < fs.length; i++) {
+         let d = fs[0]
+         if (d.size <= max_size) { //文件必须小于100M 
+             if (/.(PDF|pdf|DOC|doc|DOCX|docx)$/.test(d.name)) {
+                 //文件必须为文档 
+                 formData.append("attachment", fs[i]); //文件上传处理 
+             } else {
+                 alert('上传文件必须是PDF或DOC！')
+                 return false;
+             }
+         } else {
+             alert('上传文件过大！');
+             return false;
+         }
+     }
+     
+     var path = location.protocol + "//" + window.location.host + "/Library/news/uploadAttachment";
+     $.ajax({
+         type: "post",
+         url: path,
+         data: formData,
+         cache: false,
+         processData: false,
+         contentType: false,
+         success: function(response) {
+        	 console.log(formData);
+             if (response.errno == 0) {
+                 console.log(response);
+                 alert("上传成功");
+                 // 追加内容到富文本里面
+                 var fileName = fs[0].name; //获取到文件列表
+                 //var download = location.protocol + "//" + window.location.host + "/Library/news/download?path=" + response.data[0];
+                 var download = response.data[0];
+                 var linka = `<p> <a href="${download}" download="${fileName}">${fileName}</a> </p>`;
+                 editor.txt.append(linka);
+             } else {
+                 alert("上传失败");
+             }
+         }
+     });
+ }
+ 
  /**
   * 获取原新闻内容 
   * 并渲染到editNews.html
@@ -176,9 +255,10 @@
          var parent = data[i];
          var children = parent.childrenSection;
 
-         // 无子栏目情况
+         // 无子栏目情况   
          if (children.length == 0) {
-             var $li = `<li><span class="children_span"> <a onclick=turnIframe("${parent.id}",2)>${parent.name}</a> </span></li>`;
+        	 // 最开始为新闻公告 默认选中
+             var $li = `<li><span class="children_span focusChild"> <a onclick=turnIframe("${parent.id}",2)>${parent.name}</a> </span></li>`;
              $('#rootUL').append($li);
          } else {
              // 有子栏目的情况
@@ -202,7 +282,7 @@
              $('#rootUL').append($li);
          }
      }
-     // 在最后加上 “管理员列表”
+     // 在最后加上 “管理员列表”  进入时默认选中
      var $li = `<li><span class="children_span"> <a onclick=turnIframe("",3)>管理员列表</a> </span></li>`;
      $('#rootUL').append($li);
  }

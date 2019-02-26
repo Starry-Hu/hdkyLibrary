@@ -41,7 +41,7 @@
 	WHERE
 	A.isDel = 0 AND A.sectionId = #{sectionId}
 	ORDER BY
-	A.createTime;
+	A.createTime DESC;
   </select>
   
     <select id="selectNewsBySectionWithPage" resultType="cn.edu.hdky.library.pojo.NewsExtend">
@@ -65,7 +65,7 @@
 	A.isDel = 0 
 	AND A.sectionId = #{sectionId} 
 	ORDER BY
-	A.createTime 
+	A.createTime DESC
 	LIMIT #{startIndex},#{pageSize};
   </select>
   

@@ -1,10 +1,19 @@
 package cn.edu.hdky.library.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -47,7 +56,7 @@ public class NewsController extends BaseController {
 			return ajaxFail(ResultEnum.NEWS_INFO_NULL);
 		}
 
-		String createUser = (String) session.getAttribute("adminId");
+		String createUser = (String) session.getAttribute("aid");
 		System.out.println("-------------" + createUser + "---------------");
 		int n = newsService.addNews(sectionId, title, content, createUser);
 
@@ -199,33 +208,7 @@ public class NewsController extends BaseController {
 		return ajaxSucc(pageBean, ResultEnum.NEWS_SEARCH_SUCCESS);
 	}
 	
-	
-	
-	
-	
-	
-	
-	/*
-	 * 可能用不到的接口
-	 */
-	
-	/**
-	 * 查找指定id的新闻
-	 * 
-	 * @param id 新闻id
-	 * @return
-	 * @throws Exception
-	 */
-	@GetMapping("/searchNews")
-	public BaseResponse searchNewsById(String id) throws Exception {
-		// id未填写
-		if (null == id || "".equals(id.trim())) {
-			return ajaxFail(ResultEnum.NEWS_ID_NULL);
-		}
-		News data = newsService.searchNewsById(id);
 
-		return ajaxSucc(data, ResultEnum.NEWS_SEARCH_SUCCESS);
-	}
 	
 	
 	/**
@@ -254,6 +237,14 @@ public class NewsController extends BaseController {
 		return result_map;
 	}
 	
+	
+	
+	/**
+	 * 上传附件的接口
+	 * @param attachment 附件
+	 * @return
+	 * @throws Exception
+	 */
 	@PostMapping("/uploadAttachment")
 	public Map<String, Object> uploadAttachment(@Param("attachment") MultipartFile attachment) throws Exception{
 		Map<String, Object> result_map = new HashMap<String, Object>();
@@ -274,4 +265,31 @@ public class NewsController extends BaseController {
 	}
 
 	
+	
+	
+	
+	
+	
+	/*
+	 * 可能用不到的接口
+	 */
+	
+	/**
+	 * 查找指定id的新闻
+	 * 
+	 * @param id 新闻id
+	 * @return
+	 * @throws Exception
+	 */
+	@GetMapping("/searchNews")
+	public BaseResponse searchNewsById(String id) throws Exception {
+		// id未填写
+		if (null == id || "".equals(id.trim())) {
+			return ajaxFail(ResultEnum.NEWS_ID_NULL);
+		}
+		News data = newsService.searchNewsById(id);
+
+		return ajaxSucc(data, ResultEnum.NEWS_SEARCH_SUCCESS);
+	}
+
 }

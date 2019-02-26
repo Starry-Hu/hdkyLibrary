@@ -305,13 +305,22 @@
             color: #db4f03;
         }
         
+        .content{
+            margin: 10px 80px;
+            text-align: left;
+            line-height: 60px;
+            font-size: 18px;
+           
+        }
+        
         .content h1 {
             font-size: 25px;
             color: rgba(83, 126, 171, 0.87);
             margin-top: 20px;
             margin-bottom: 30px;
-        }
+        } 
         
+        /* 注释p  为所有的文字都添加上样式*/
         .content p {
             color: dimgrey;
             margin: 10px 80px;
@@ -329,3 +338,7 @@
         .content p:last-child {
             margin-bottom: 30px;
         }
+        /*下载文件的a标签 */
+        .content a {
+            font-size: 14px;
+        } 

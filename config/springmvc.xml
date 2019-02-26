@@ -14,8 +14,8 @@
     http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
-	<!-- <mvc:resources location="/manage/html/" mapping="/manage/html/**"></mvc:resources>
-	<mvc:resources location="/front/js/" mapping="/m/js/**"></mvc:resources> -->
+	 <mvc:resources location="/manage/html/" mapping="/manage/html/**"></mvc:resources>
+	<!--<mvc:resources location="/front/js/" mapping="/m/js/**"></mvc:resources> -->
 	<!-- 配置Controller，使用组件扫描的方式进行配置 -->
 	<context:component-scan base-package="cn.edu.hdky.library.controller"></context:component-scan>
 
@@ -43,5 +43,16 @@
 	<!-- <bean id="exceptionResolver" class="cn.lcn.exception.AllExceptionHandler" 
 		/> -->
 	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<!-- 登录认证拦截器 -->
+		<mvc:interceptor>
+			<!-- 拦截所有URL中包含/manage/的请求 -->
+			<!-- <mvc:mapping path="/manage/**" /> -->
+			<mvc:mapping path="/**" />
+			<!-- 不进行拦截 -->
+			<!-- <mvc:exclude-mapping path="/front/*.html"/> -->
+			<bean class="cn.edu.hdky.library.interceptor.MyInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 </beans>

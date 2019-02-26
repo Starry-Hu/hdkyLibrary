@@ -207,9 +207,8 @@ public class SectionController extends BaseController {
 	 * @throws Exception
 	 */
 	@GetMapping("/getAllChildren")
-	public BaseResponse getAllChildren() throws Exception{
+	public BaseResponse getAllChildren(HttpSession session) throws Exception{
 		List<SectionExtend> datas = sectionService.getAllChildren();
-		
 		return ajaxSucc(datas, ResultEnum.SECTION_SEARCH_SUCCESS);
 	}
 	

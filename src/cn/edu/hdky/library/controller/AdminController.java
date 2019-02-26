@@ -217,7 +217,7 @@ public class AdminController extends BaseController {
 		
 		Admin admin = adminService.searchAdmin(adminId);
 		// 原密码错误
-		if (!oldPassword.equals( admin.getAdminid() )) {
+		if (!oldPassword.equals( admin.getPassword() )) {
 			return ajaxFail(ResultEnum.ADMIN_OLDPSW_ERROR);
 		}
 		// 新旧密码一致  无变化

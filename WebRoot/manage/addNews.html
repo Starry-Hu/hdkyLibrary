@@ -15,7 +15,12 @@
 
 <body>
     <div id="main">
-    	<h3>编辑新闻</h3>
+    	<div id="innerTop">
+            <button class="btn" onclick=javascript:history.back(-1);>返回</button>
+            <div>
+                <h3>添加新闻</h3>
+            </div>
+        </div>
         <form>
             <div class="form-row">
                 <div class="form-group col-6">
@@ -27,9 +32,6 @@
                     <label for="section" class="must">所属版块</label>
                     <select id="section" class="form-control" required>
                         <option selected value="none">请选择所属版块</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
                     </select>
                     <span style="display: none;">所属版块不能为空！</span>
                 </div>
@@ -39,12 +41,18 @@
                 <div id="editor"></div>
             </div>
             <div class="form-group">
-                <input type="file" name="attachment" class="file" id="attachment" multiple=”multiple
-                 onchange="upload()"/>
+                <input type="file" name="attachment" class="file" id="attachment" multiple="multiple"
+                 onchange="handleFile()">
+            </div>
+            <div class="col-12" id="tips">
+                	<p>注意：文本编辑器样式已固定，不必使用编辑器自带样式编辑</p>
+                	<p>标题请选择H1，具体内容回车换行编辑即可，不必添加额外样式</p>
+                	<p>多个文件上传时请分别上传</p>
             </div>
         </form>
 
         <button class="btn btn-primary" id="submit">上传</button>
+        
     </div>
 
 
@@ -61,6 +69,10 @@
 	    // 动态显示section下拉框
 	    getChildSectionsInSelect();
 
+	  	var downLoad = location.protocol + "//" + window.location.host + "//upload//attachment//2019//02/25//报名表(1).docx";
+	    $('#test').attr('download',downLoad);
+	     
+	    
 	    
 	    // 鼠标划开时检查必选项
 	    $('#title').blur(checkTitle);
@@ -70,41 +82,7 @@
 	        $(this).removeClass('input-error');
 	    });
 	    
-	    function upload(){
-	    	var path = location.protocol + "//" + window.location.host +
-            "/Library/news/uploadAttachment";
-	    	
-	    	 var files = $('input[name="attachment"]').prop('files');//获取到文件列表
-
-	         if (files.length == 0) {
-	             alert('请选择文件');
-	             return;
-	         } else {
-	             var reader = new FileReader();//新建一个FileReader
-	             reader.readAsText(files[0], "UTF-8");//读取文件
-	             reader.onload = function (evt) { //读取完文件之后会回来这里
-	                 var fileString = evt.target.result;
-	                 //post方式上传图片到控制器
-			$.ajax({
-	            url : path,
-	            type : "post",
-	            datatype : "json",
-	            data:{
-	            	attachment: fileString,
-	            }
-	            success:function(response){
-	            	console.log(response);
-	                if(response.errno == 0){
-	                    alert("上传文件成功");
-	                    alert(response.data);
-	                }else{
-	                    alert("啊哦，服务器开小差了！");
-	                }
-	            }
-	        });
-	    }
-	         }
-	    	 };
+	    
 	
 	    // 提交添加的新闻信息
 	    $('#submit').click(function() {
