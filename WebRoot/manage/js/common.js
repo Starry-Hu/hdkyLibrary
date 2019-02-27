@@ -28,7 +28,6 @@ $.ajaxSetup({
          async: false,
          dataType: "json",
          success: function(response) {
-             console.log(response);
              if (response.code == 0) {
                  $('#name').text("欢迎您  " + response.data.adminName);
                  // 点击修改密码
@@ -55,7 +54,6 @@ $.ajaxSetup({
          async: false,
          dataType: "json",
          success: function(response) {
-             console.log(response.msg);
              // 0表示退出成功
              if (response.code == 0) {
                  alert(response.msg);
@@ -83,7 +81,6 @@ $.ajaxSetup({
          async: false,
          dataType: "json",
          success: function(response) {
-             console.log(response.msg);
              // 206为查找成功的码
              if (response.code == 206) {
                  var $select = $('#section');
@@ -117,11 +114,11 @@ $.ajaxSetup({
      for (let i = 0; i < fs.length; i++) {
          let d = fs[0]
          if (d.size <= max_size) { //文件必须小于100M 
-             if (/.(PDF|pdf|DOC|doc|DOCX|docx)$/.test(d.name)) {
+             if (/.(PDF|pdf|DOC|doc|DOCX|docx|xls|xlsx)$/.test(d.name)) {
                  //文件必须为文档 
                  formData.append("attachment", fs[i]); //文件上传处理 
              } else {
-                 alert('上传文件必须是PDF或DOC！')
+                 alert('上传文件必须是PDF、DOC或EXCEL文件！')
                  return false;
              }
          } else {
@@ -139,9 +136,7 @@ $.ajaxSetup({
          processData: false,
          contentType: false,
          success: function(response) {
-        	 console.log(formData);
              if (response.errno == 0) {
-                 console.log(response);
                  alert("上传成功");
                  // 追加内容到富文本里面
                  var fileName = fs[0].name; //获取到文件列表
@@ -183,7 +178,6 @@ $.ajaxSetup({
          async: false,
          dataType: "json",
          success: function(response) {
-             console.log(response.msg);
              // 206状态码表示查找成功
              if (response.code == 206) {
                  var $baseData;
@@ -218,6 +212,62 @@ $.ajaxSetup({
      return exist;
  }
 
+ /**
+  * 获取当前新闻版块的全部新闻信息
+  * 用于分页新闻版块获取全部新闻信息
+  */
+ function getNewsByPage(pageNum, pageSize, sectionId) {
+     var path = location.protocol + "//" + window.location.host + "/Library/news/getNewsBySectionWithPage";
+     // 数目总页数
+     var totalPage = 0;
+     $.ajax({
+         type: "get",
+         url: path,
+         async: false, //很重要
+         data: {
+             sectionId: sectionId,
+             pageNum: pageNum,
+             pageSize: pageSize,
+         },
+         dataType: "json",
+         success: function(response) {
+             var $tr;
+             // 206为查找成功的码
+             if (response.code == 206) {
+                 totalPage = response.data.totalPage
+                 $tbody = $('#tbody');
+                 
+                 // 清空原tbody
+                 $tbody.html('');
+                 for (let i = 0; i < response.data.list.length; i++) {
+                     const element = response.data.list[i];
+
+                     // 获取每条新闻的信息
+                     var $td1 = `<td>${i + 1}</td>`; //序号
+                     var $td2 = `<td>${element.title}</td>`;
+                     var $td3 = `<td>${element.createTimeString}</td>`;
+                     var $td4 = `<td>${element.createuser}</td>`;
+                     // 无修改情况的判断
+                     if (element.updateTimeString == null) {
+                         element.updateTimeString = "无";
+                         element.updateuser = "无";
+                     }
+
+                     var $td5 = `<td>${element.updateTimeString}</td>`;
+                     var $td6 = `<td>${element.updateuser}</td>`;
+                     var $tdButton =
+                         ` <td style="text-align:center"> <input class="btn btn-info btn-sm" type="button" value="修改" onclick="updNews('${element.id}')">
+                            <input class="btn btn-danger btn-sm" type="button" value="删除" onclick="delNews('${element.id}')"> </td>`;
+
+                     var $tr = $('<tr></tr>');
+                     $tr.append($td1 + $td2 + $td3 + $td4 + $td5 + $td6 + $tdButton);
+                     $tbody.append($tr);
+                 }
+             }
+         }
+     });
+     return totalPage;
+ }
 
 
  /* index页面导航相关 */
@@ -235,7 +285,6 @@ $.ajaxSetup({
          async: false,
          dataType: "json",
          success: function(response) {
-             console.log(response.msg);
              // 206为查找成功的码
              // 返回父版块对象数组
              if (response.code == 206) {
@@ -337,7 +386,6 @@ $.ajaxSetup({
          async: false,
          dataType: "json",
          success: function(response) {
-             console.log(response.msg);
              // 206为查找成功的码
              // 返回父版块对象数组
              if (response.code == 206) {
@@ -366,7 +414,6 @@ $.ajaxSetup({
          async: false,
          dataType: "json",
          success: function(response) {
-             console.log(response.msg);
              // 206为查找成功的码
              if (response.code == 206) {
                  $('#sname').val(response.data.name);
@@ -407,3 +454,57 @@ $.ajaxSetup({
          }
      });
  }
+ 
+ /**
+  * 分页获取admin信息
+  */
+ function getAdminsByPage(pageNum, pageSize) {
+     var path = location.protocol + "//" + window.location.host + "/Library/admin/getAllAdminWithPage";
+     var totalPage = 0;
+     $.ajax({
+         type: "get",
+         url: path,
+         async: false,
+         data: {
+             pageNum: pageNum, //第几页
+             pageSize: pageSize, // 每页的个数
+         },
+         dataType: "json",
+         success: function(response) {
+             // 206为查找成功的码
+             if (response.code == 206) {
+                 totalPage = response.data.totalPage;
+                 var $tbody = $('#tbody');
+                 for (let i = 0; i < response.data.list.length; i++) {
+                     const element = response.data.list[i];
+
+                     // 获取每条新闻的信息
+                     var $td1 = `<td>${element.adminid}</td>`; //序号
+                     var $td2 = `<td>${element.adminname}</td>`;
+                     var $td3 = `<td>${element.createTimeString}</td>`;
+                     var $td4 = `<td>${element.createuser}</td>`;
+                     // 无修改情况的判断
+                     if (element.updateTimeString == null) {
+                         element.updateTimeString = "无";
+                         element.updateuser = "无";
+                     }
+
+                     var $td5 = `<td>${element.updateTimeString}</td>`;
+                     var $td6 = `<td>${element.updateuser}</td>`;
+                     var $tdButton =
+                         ` <td style="text-align:center"> <input class="btn btn-info btn-sm" type="button" value="修改" onclick="updAdmin('${element.id}')"> 
+                            <input class="btn btn-danger btn-sm" type="button" value="删除" onclick="delAdmin('${element.id}')"> </td>`;
+
+                     //添加到表格里
+                     var $tr = $('<tr></tr>');
+                     $tr.append($td1 + $td2 + $td3 + $td4 + $td5 + $td6 + $tdButton);
+                     $tbody.append($tr);
+                 }
+             }
+         }
+     });
+
+     return totalPage;
+ }
+ 
+ 

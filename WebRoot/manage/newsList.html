@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/inner.css">
-
+    <link rel="stylesheet" href="css/pagination.css">
     <title>新闻列表展示</title>
 
 </head>
@@ -17,14 +17,14 @@
         <div id="innerTop">
             <button class="btn" onclick=javascript:history.back(-1);>返回</button>
             <div>
-            	<h3>新闻公告</h3>
+                <h3>新闻公告</h3>
                 <h3>列表显示</h3>
             </div>
         </div>
 
         <button type="button" class="btn btn-success" onclick="addNews()">添加</button>
         <!--表格-->
-        <table class="table" cellspacing="0" cellpadding="0">
+        <table class="table table-hover" cellspacing="0" cellpadding="0">
             <thead>
                 <tr>
                     <th width="15%">序号</th>
@@ -37,16 +37,17 @@
                 </tr>
             </thead>
             <tbody id="tbody">
-                <div class="pagination-nick"></div>
             </tbody>
         </table>
+
+        <div id="pageDemo" class="m-style"></div>
     </div>
 
 
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/pagination.js"></script>
-
+    <script src="js/common.js"></script>
+    <script src="js/jquery.pagination.js"></script>
     <script>
         function addNews() {
             window.location = "addNews.html";
@@ -75,48 +76,15 @@
     </script>
     <script>
         // 获取当前新闻版块的全部新闻信息
-        var path = location.protocol + "//" + window.location.host + "/Library/news/getAllNewsBySection";
         var str = window.location.href;
         var sectionId = str.substr(str.indexOf('=') + 1);
 
-        $.ajax({
-            type: "get",
-            url: path,
-            data: {
-                sectionId: sectionId
-            },
-            dataType: "json",
-            success: function(response) {
-                console.log(response.msg);
-                // 206为查找成功的码
-                if (response.code == 206) {
-                    var $tbody = $('#tbody');
-                    for (let i = 0; i < response.data.length; i++) {
-                        const element = response.data[i];
-
-                        // 获取每条新闻的信息
-                        var $td1 = `<td>${i+1}</td>`; //序号
-                        var $td2 = `<td>${element.title}</td>`;
-                        var $td3 = `<td>${element.createTimeString}</td>`;
-                        var $td4 = `<td>${element.createuser}</td>`;
-                        // 无修改情况的判断
-                        if (element.updateTimeString == null) {
-                            element.updateTimeString = "无";
-                            element.updateuser = "无";
-                        }
-
-                        var $td5 = `<td>${element.updateTimeString}</td>`;
-                        var $td6 = `<td>${element.updateuser}</td>`;
-                        var $tdButton =
-                            ` <td style="text-align:center"> <input class="btn btn-info btn-sm" type="button" value="修改" onclick="updNews('${element.id}')"> 
-                            <input class="btn btn-danger btn-sm" type="button" value="删除" onclick="delNews('${element.id}')"> </td>`;
-
-                        //添加到表格里
-                        var $tr = $('<tr></tr>');
-                        $tr.append($td1 + $td2 + $td3 + $td4 + $td5 + $td6 + $tdButton);
-                        $tbody.append($tr);
-                    }
-                }
+        var totalPage = getNewsByPage(1, 14, sectionId);
+        $('#pageDemo').pagination({
+            pageCount: totalPage,
+            jump: true,
+            callback: function(api) {
+                getNewsByPage(api.getCurrent, 14, sectionId);
             }
         });
     </script>

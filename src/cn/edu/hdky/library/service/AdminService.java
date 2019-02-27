@@ -82,7 +82,12 @@ public interface AdminService {
 	PageBean<AdminExtend> getAllAdminWithPage(int pageNum, int pageSize) throws Exception;
 	
 	
-	
+	/**
+	 * 查询用户数据
+	 * @param id
+	 * @return
+	 */
+/*	AdminExtend getUserAndRoles(Integer id);*/
 	
 	
 	

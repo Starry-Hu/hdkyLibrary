@@ -75,6 +75,8 @@
             font-size: 100%;
             font: inherit;
             vertical-align: baseline;
+            /* 处理和boostrap冲突清空 */
+            box-sizing:content-box!important;
         }
         /* HTML5 display-role reset for older browsers */
         
@@ -258,7 +260,7 @@
             font-size: 15px;
             color: #FFF;
             margin-top: 0px;
-            background-color: rgba(83, 126, 171, 0.87);
+            background-color: #3b68bb;
             line-height: 2;
             text-align: center;
         }

@@ -189,10 +189,10 @@
                     <div class="home-content-right">
                         <div class="notice-wrap">
                             <ul class="notice-class">
-                                <li class="notice-class-active"><a href="#">新闻公告</a>
+                                <li class="notice-class-active"><a href="newsList.html">新闻公告</a>
                                 </li>
 
-                                <li class="notice-class-more"><a href="#">更多&gt;&gt;</a>
+                                <li class="notice-class-more"><a href="newsList.html">更多&gt;&gt;</a>
                                 </li>
                                 <div class="clearfix"></div>
                             </ul>
@@ -347,7 +347,7 @@
                                 const child = parent.childrenSection[j];
                                 var $a =
                                     `<a href = "${child.address}?sectionId=${child.id}"> 
-                                                        <div width="120" height="30"> ${child.name} </div> </a>`;
+                                                        <div id="ff" width="120" height="30"> ${child.name} </div> </a>`;
                                 $li.append($a);
                             }
                             $dd.append($li);
@@ -435,7 +435,7 @@
             type: "get",
             // 并上新闻的sectionId  默认取第一页数据
             url: location.protocol + "//" + window.location.host +
-                "/Library/news/getNewsBySectionWithPage?pageNum=1&pageSize=15&sectionId=5CC74DC0472C4FBEBAF5CCECD16FA67F",
+                "/Library/news/getNewsBySectionWithPage?pageNum=1&pageSize=12&sectionId=5CC74DC0472C4FBEBAF5CCECD16FA67F",
             dataType: "json",
             async: false,
             success: function(response) {

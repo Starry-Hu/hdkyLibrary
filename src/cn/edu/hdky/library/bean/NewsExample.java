@@ -2,7 +2,6 @@ package cn.edu.hdky.library.bean;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 public class NewsExample {
@@ -104,32 +103,6 @@ public class NewsExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
-        }
-
-        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
-            if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value.getTime()), property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
-            if (values == null || values.size() == 0) {
-                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
-            }
-            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
-            Iterator<Date> iter = values.iterator();
-            while (iter.hasNext()) {
-                dateList.add(new java.sql.Date(iter.next().getTime()));
-            }
-            addCriterion(condition, dateList, property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
-            if (value1 == null || value2 == null) {
-                throw new RuntimeException("Between values for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
         }
 
         public Criteria andIdIsNull() {
@@ -353,52 +326,52 @@ public class NewsExample {
         }
 
         public Criteria andCreatetimeEqualTo(Date value) {
-            addCriterionForJDBCDate("createTime =", value, "createtime");
+            addCriterion("createTime =", value, "createtime");
             return (Criteria) this;
         }
 
         public Criteria andCreatetimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("createTime <>", value, "createtime");
+            addCriterion("createTime <>", value, "createtime");
             return (Criteria) this;
         }
 
         public Criteria andCreatetimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("createTime >", value, "createtime");
+            addCriterion("createTime >", value, "createtime");
             return (Criteria) this;
         }
 
         public Criteria andCreatetimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("createTime >=", value, "createtime");
+            addCriterion("createTime >=", value, "createtime");
             return (Criteria) this;
         }
 
         public Criteria andCreatetimeLessThan(Date value) {
-            addCriterionForJDBCDate("createTime <", value, "createtime");
+            addCriterion("createTime <", value, "createtime");
             return (Criteria) this;
         }
 
         public Criteria andCreatetimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("createTime <=", value, "createtime");
+            addCriterion("createTime <=", value, "createtime");
             return (Criteria) this;
         }
 
         public Criteria andCreatetimeIn(List<Date> values) {
-            addCriterionForJDBCDate("createTime in", values, "createtime");
+            addCriterion("createTime in", values, "createtime");
             return (Criteria) this;
         }
 
         public Criteria andCreatetimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("createTime not in", values, "createtime");
+            addCriterion("createTime not in", values, "createtime");
             return (Criteria) this;
         }
 
         public Criteria andCreatetimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("createTime between", value1, value2, "createtime");
+            addCriterion("createTime between", value1, value2, "createtime");
             return (Criteria) this;
         }
 
         public Criteria andCreatetimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("createTime not between", value1, value2, "createtime");
+            addCriterion("createTime not between", value1, value2, "createtime");
             return (Criteria) this;
         }
 
@@ -483,52 +456,52 @@ public class NewsExample {
         }
 
         public Criteria andUpdatetimeEqualTo(Date value) {
-            addCriterionForJDBCDate("updateTime =", value, "updatetime");
+            addCriterion("updateTime =", value, "updatetime");
             return (Criteria) this;
         }
 
         public Criteria andUpdatetimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("updateTime <>", value, "updatetime");
+            addCriterion("updateTime <>", value, "updatetime");
             return (Criteria) this;
         }
 
         public Criteria andUpdatetimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("updateTime >", value, "updatetime");
+            addCriterion("updateTime >", value, "updatetime");
             return (Criteria) this;
         }
 
         public Criteria andUpdatetimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("updateTime >=", value, "updatetime");
+            addCriterion("updateTime >=", value, "updatetime");
             return (Criteria) this;
         }
 
         public Criteria andUpdatetimeLessThan(Date value) {
-            addCriterionForJDBCDate("updateTime <", value, "updatetime");
+            addCriterion("updateTime <", value, "updatetime");
             return (Criteria) this;
         }
 
         public Criteria andUpdatetimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("updateTime <=", value, "updatetime");
+            addCriterion("updateTime <=", value, "updatetime");
             return (Criteria) this;
         }
 
         public Criteria andUpdatetimeIn(List<Date> values) {
-            addCriterionForJDBCDate("updateTime in", values, "updatetime");
+            addCriterion("updateTime in", values, "updatetime");
             return (Criteria) this;
         }
 
         public Criteria andUpdatetimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("updateTime not in", values, "updatetime");
+            addCriterion("updateTime not in", values, "updatetime");
             return (Criteria) this;
         }
 
         public Criteria andUpdatetimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("updateTime between", value1, value2, "updatetime");
+            addCriterion("updateTime between", value1, value2, "updatetime");
             return (Criteria) this;
         }
 
         public Criteria andUpdatetimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("updateTime not between", value1, value2, "updatetime");
+            addCriterion("updateTime not between", value1, value2, "updatetime");
             return (Criteria) this;
         }
 

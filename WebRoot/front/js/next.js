@@ -4,8 +4,11 @@ $(function() {
     var home = location.protocol + "//" + window.location.host + "/Library/front/index.html";
     $('#homePage').attr('href', home);
 
+    // 设置新闻列表a地址
+    var lista = location.protocol + "//" + window.location.host + "/Library/front/newsList.html";
+    $('#newsList').attr('href', lista);
+
     // 载入相应内容
-    // 测试地址： http://localhost:8080/Library/front/next.html?id=1B184925C70A43F6AA114D09C575E3AC
     var str = window.location.href;
 
     var index1 = str.indexOf('?') + 1;

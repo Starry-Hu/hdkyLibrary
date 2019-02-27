@@ -6,6 +6,8 @@ public class AdminExtend extends Admin {
 	// 将时间戳转为时间
 	private String createTimeString;
 	private String updateTimeString;
+	// 权限信息
+	private String userRoles;
 
 	public String getCreateTimeString() {
 		return createTimeString;

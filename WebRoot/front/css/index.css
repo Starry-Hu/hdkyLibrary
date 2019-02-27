@@ -189,7 +189,7 @@ a {
     width: 295px;
     height: 200px;
     margin-right: 100px;
-    margin-top: 70px;
+    /* margin-top: 70px; */
 }
 
 .lxfscroll {
@@ -922,13 +922,14 @@ h1 {
 }
 
 .footer {
-    height: 80px;
-
+/*     height: 80px;
+ */
+ 	height: 70px;
 }
 
-.homepage-footer {
+/* .homepage-footer {
     padding-top: 10px;
-}
+} */
 
 .footer p {
     font-family: "é»‘ä½“";

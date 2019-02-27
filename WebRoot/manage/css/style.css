@@ -133,4 +133,5 @@ footer {
     color: #fff;
     position: absolute;
     bottom: 0;
+    left: -1px;
 }
