@@ -168,9 +168,9 @@ a {
     top: 0px;
     left: 0px;
     float: left;
-    width: 206px;
+    width: 232px;
     height: 100%;
-    margin-top: 60px;
+    margin-top: 5px;
     margin-left: 12px;
 }
 
@@ -182,30 +182,41 @@ a {
 
 #bottom_right_side {
     float: right;
-    /*position:absolute;*/
-    top: 0px;
-    right: 50px;
+    position:absolute;
+    bottom: 140px;
+    right: 0px;
     /*border:solid 1px #0000FF;*/
-    width: 295px;
-    height: 200px;
-    margin-right: 100px;
+    width: 390px;
+    height: 135px;
+    margin-right: 40px;
     /* margin-top: 70px; */
 }
 
+#more_service_side {
+    float: right;
+    position:absolute;
+    bottom: 15px;
+    right: 0px;
+    /*border:solid 1px #0000FF;*/
+    width: 390px;
+    height: 135px;
+    margin-right: 40px;
+    /* margin-top: 70px; */
+}
 .lxfscroll {
-    width: 200px;
+    width: 233px;
     margin-left: 0px;
     margin-right: auto;
     margin-top: -42px;
     position: relative;
-    height: 150px;
+    height: 191px;
     border: 4px solid #EFEFEF;
     overflow: hidden;
 }
 
 .lxfscroll ul li {
-    height: 150px;
-    width: 200px;
+    height: 196px;
+    width: 237px;
     text-align: left;
     line-height: 150px;
     font-size: 40px;
@@ -216,7 +227,7 @@ a {
 }
 
 .lxfscroll-title {
-    width: 250px;
+    width: 300px;
     margin: 5px auto;
 }
 
@@ -227,7 +238,7 @@ a {
     border: 1px dashed #CCC;
     margin-top: 2px;
     cursor: pointer;
-    margin-right: 2px;
+    margin-right:11px;
     padding: 14px;
 }
 
@@ -238,7 +249,7 @@ a {
 
 .lxfscroll ul {
     position: absolute;
-    width: 200px;
+    width: 237px;
     top: -6px;
     height: 1475px;
     left: -4px;
@@ -258,8 +269,8 @@ a {
 }
 
 .picture {
-    height: 160px;
-    width: 200px;
+    height: 196px;
+    width: 237px;
 }
 
 .net {
@@ -272,12 +283,32 @@ a {
 
 .nettwo {
     height: 102px;
-    width: 82px;
+    width: 85px;
     float: left;
-    margin-top: 25px;
-    margin-left: 10px;
+    margin-left: 40px;
+    margin-top: 3px;
 }
 
+.nettwo img{
+	width: 75px;
+	height: 75px;
+}
+.nettwo p{
+	width: 20px;
+    height: 75px;
+    text-align: center;
+    position: relative;
+    left: 85px;
+    top: -80px;
+    color: #3f3f40;
+    font-size: 14px;
+    border: 1px dashed #d0d0cf;
+}
+/*拓扑图居中*/
+.nettwo .tuoputu{
+	padding-top: 8px;
+    box-sizing: border-box;
+}
 .newnet {
     height: 100px;
     width: 300px;
@@ -305,7 +336,7 @@ dl {
     float: left;
     height: 250px;
     width: 420px;
-    margin-top: -60px;
+    margin-top: -70px;
 }
 
 #tab dd li {
@@ -419,7 +450,7 @@ h1 {
     display: block;
     float: left;
     padding: 15px 15px 15px 0px;
-    width: 140px;
+    width: 109px;
     color: #ffffff;
     text-align: center;
     z-index: 200;
@@ -457,12 +488,14 @@ h1 {
 }
 
 .tabslider ul a {
-    color: hsl(253, 91%, 65%);
+    /* color: hsl(253, 91%, 65%); */
     text-decoration: none;
+    color: #3b68bb;
 }
 
 .tabslider ul a:hover {
-    color: #ff5d34;
+   /* color: #ff5d34; */
+   color: #9C1E2E;
 }
 
 .tabslider ul li {
@@ -618,8 +651,7 @@ h1 {
 
 .content {
     position: relative;
-    /*20141028 1651*/
-    padding-bottom: 30px;
+   /*  padding-bottom: 10px; */
     padding-left: 10px;
 }
 
@@ -1228,8 +1260,9 @@ h1 {
 .home-content-shadow {
     float: left;
     width: 30px;
-    height: 300px;
-    margin-top: 10px;
+    height: 345px;
+    margin-top: 3px;
+    margin-left: 25px;
 }
 
 #collections,
@@ -1633,13 +1666,13 @@ h1 {
 
 .home-content-right {
     float: left;
-    width: 350px;
+    width: 380px;
     margin-top: 15px;
-    margin-left: 100px;
+    margin-left: 15px;
 }
 
 .notice-class {
-    width: 318px;
+    width: 380px;
     margin-bottom: 10px;
     list-style: none;
     border-bottom: 1px solid #d0d0d0;
@@ -1699,7 +1732,7 @@ h1 {
 
 .notice-content {
     display: none;
-    width: 318px;
+    width: 380px;
 }
 
 .notice-content li {

@@ -1,10 +1,18 @@
 @charset "UTF-8";
-.m-style {
-    position: relative;
-    text-align: center;
-    zoom: 1;
+.juzhong{
+    position:relative;   
 }
 
+.m-style {
+    text-align: center;
+    zoom: 1; 
+    position: absolute; 
+    left: 30%; 
+    /* top:60%;
+    transform: translate(-15%,-1800%); */
+
+  
+}
 .m-style:before,
 .m-style:after {
     content: "";

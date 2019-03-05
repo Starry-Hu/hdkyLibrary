@@ -1,8 +1,25 @@
 @charset "UTF-8";
+
+.juzhong{
+    position:relative;
+    top: 15px; 
+     width: 950px;
+     left:120px;
+   
+}
+.juzhong2{
+    position: absolute; 
+    left: 31%; 
+    top:60%;
+    transform: translate(-40%,-50%);
+
+}
 .m-style {
-    position: relative;
+    position:relative;
     text-align: center;
     zoom: 1;
+
+  
 }
 
 .m-style:before,

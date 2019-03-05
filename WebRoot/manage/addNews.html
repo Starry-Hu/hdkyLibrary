@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="css/inner.css">
 
     <title>添加新闻内容</title>
-    
+
 </head>
 
 <body>
     <div id="main">
-    	<div id="innerTop">
+        <div id="innerTop">
             <button class="btn" onclick=javascript:history.back(-1);>返回</button>
             <div>
                 <h3>添加新闻</h3>
@@ -41,18 +41,17 @@
                 <div id="editor"></div>
             </div>
             <div class="form-group">
-                <input type="file" name="attachment" class="file" id="attachment" multiple="multiple"
-                 onchange="handleFile()">
+                <input type="file" name="attachment" class="file" id="attachment" multiple="multiple" onchange="handleFile()">
             </div>
             <div class="col-12" id="tips">
-                	<p>注意：文本编辑器样式已固定，不必使用编辑器自带样式编辑</p>
-                	<p>标题请选择H1，具体内容回车换行编辑即可，不必添加额外样式</p>
-                	<p>多个文件上传时请分别上传</p>
+                <p>注意：文本编辑器样式已固定，不必使用编辑器自带样式编辑</p>
+                <p>标题请选择H1，具体内容回车换行编辑即可，不必添加额外样式</p>
+                <p>多个文件上传时请分别上传</p>
             </div>
         </form>
 
         <button class="btn btn-primary" id="submit">上传</button>
-        
+
     </div>
 
 
@@ -64,46 +63,54 @@
     <script src="js/checkValidForm.js"></script>
 
     <script type="text/javascript">
-	 	// 加载富文本编辑器
-	    createEditor();
-	    // 动态显示section下拉框
-	    getChildSectionsInSelect();
+        // 加载富文本编辑器
+        createEditor();
+        // 动态显示section下拉框
+        getChildSectionsInSelect();
 
-	  	var downLoad = location.protocol + "//" + window.location.host + "//upload//attachment//2019//02/25//报名表(1).docx";
-	    $('#test').attr('download',downLoad);
-	     
-	    
-	    
-	    // 鼠标划开时检查必选项
-	    $('#title').blur(checkTitle);
-	    $('#section').blur(checkSection);
-	
-	    $('input').on('focus', function() {
-	        $(this).removeClass('input-error');
-	    });
-	    
-	    
-	
-	    // 提交添加的新闻信息
-	    $('#submit').click(function() {
-	        if (checkTitle() && checkSection()) {
-	            var path = location.protocol + "//" + window.location.host +
-	                "/Library/news/addNews";
-	            $.ajax({
-	                type: "post",
-	                url: path,
-	                data: {
-	                    title: $('#title').val(),
-	                    sectionId: $('#section').val(),
-	                    content: editor.txt.html(),
-	                },
-	                dataType: "json",
-	                success: function(response) {
-	                    alert(response.msg);
-	                }
-	            });
-	        }
-	    })
+        // 若确定section取值 固定section取值
+        var str = window.location.href;
+        var sectionId = str.substr(str.indexOf('=') + 1);
+        console.log(sectionId);
+        if (sectionId != null) {
+            $('section').val(sectionId);
+        }
+
+        var downLoad = location.protocol + "//" + window.location.host + "//upload//attachment//2019//02/25//报名表(1).docx";
+        $('#test').attr('download', downLoad);
+
+
+
+        // 鼠标划开时检查必选项
+        $('#title').blur(checkTitle);
+        $('#section').blur(checkSection);
+
+        $('input').on('focus', function() {
+            $(this).removeClass('input-error');
+        });
+
+
+
+        // 提交添加的新闻信息
+        $('#submit').click(function() {
+            if (checkTitle() && checkSection()) {
+                var path = location.protocol + "//" + window.location.host +
+                    "/Library/news/addNews";
+                $.ajax({
+                    type: "post",
+                    url: path,
+                    data: {
+                        title: $('#title').val(),
+                        sectionId: $('#section').val(),
+                        content: editor.txt.html(),
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        alert(response.msg);
+                    }
+                });
+            }
+        })
     </script>
 </body>
 

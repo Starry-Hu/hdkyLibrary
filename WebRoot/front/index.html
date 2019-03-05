@@ -16,11 +16,11 @@
         <div class="top-nav-right"></div>
         <div class="top-nav-center">
             <ul>
-                <li><a href="http://its.ncepu.edu.cn/">华电网管中心</a>
+                <li><a href="http://its.ncepu.edu.cn/" target="_blank">华电网管中心</a>
                 </li>
-                <li><a href="http://202.206.214.254/">华电图书馆</a>
+                <li><a href="http://202.206.214.254/" target="_blank">华电图书馆</a>
                 </li>
-                <li><a href="http://www.hdky.edu.cn/">学院主页</a></li>
+                <li><a href="http://www.hdky.edu.cn/" target="_blank">学院主页</a></li>
             </ul>
         </div>
     </div>
@@ -48,6 +48,7 @@
                                 <span>整合检索 </span>
                                 <span>站内搜索</span>
                                 <span>我的图书馆</span>
+                                <span>电子图书</span>
                             </div>
                             <div class="slide_content">
                                 <div class="tabslider">
@@ -59,18 +60,18 @@
 
                                                     <div class="search-content-drop-wrap">
                                                         <ul class="search-content-drop" style="height:30px; width: 100px">
-                                                            <li class="sli" id="keyword" style="color: rgb(130, 130, 130);">
-                                                                主题词
+                                                            <li class="sli" id="title" style="color: rgb(130, 130, 130);">题名
                                                             </li>
                                                             <li class="sli" id="author" style="color: rgb(130, 130, 130);">
                                                                 作者
                                                             </li>
-                                                            <li class="sli" id="title" style="color: rgb(130, 130, 130);">题名
+                                                            <li class="sli" id="keyword" style="color: rgb(130, 130, 130);">
+                                                                主题词
                                                             </li>
                                                         </ul>
                                                     </div>
 
-                                                    <input id="strSearchType" type="hidden" value="keyword" />
+                                                    <input id="strSearchType" type="hidden" value="title" />
                                                     <input id="searchButtonContent" class="searchButton" type="button" value="" />
 
                                                     <div class="clearfix"></div>
@@ -175,6 +176,18 @@
                                             </div>
                                         </li>
                                     </ul>
+                                     <ul>
+                                        <li>
+                                            <div id="e-book" style="display: block;">
+												<div><a href="http://202.206.214.254/front/sDDbClass.aspx?id=Tushu">点击进入<strong>电子图书</strong></a></div>
+                                                <div class="explanation">
+                                                    <img src="img/explanation.png" alt="" />
+                                                    <p>说明：可进入本馆采购的电子书平台列表（包括读秀知识库、超星电子书、中文在线、科学文库、华电文库等中文电子书平台，也包括Springer、SD、IEL等外文电子书平台）。</p>
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
 
 
@@ -184,15 +197,15 @@
 
 
                     </div>
-
+<img src="img/home-content-shadow.png" alt="" class="home-content-shadow">
 
                     <div class="home-content-right">
                         <div class="notice-wrap">
                             <ul class="notice-class">
-                                <li class="notice-class-active"><a href="newsList.html">新闻公告</a>
+                                <li class="notice-class-active"><a href="more.html" target="_blank">新闻公告</a>
                                 </li>
 
-                                <li class="notice-class-more"><a href="newsList.html">更多&gt;&gt;</a>
+                                <li class="notice-class-more"><a href="more.html" target="_blank">更多&gt;&gt;</a>
                                 </li>
                                 <div class="clearfix"></div>
                             </ul>
@@ -209,15 +222,15 @@
                             <div class="lxfscroll">
                                 <ul>
                                     <li>
-                                        <img src="http://202.206.214.254/img/1.jpg" width="200" height="150" alt="1" /></li>
+                                        <img src="http://202.206.214.254/img/1.jpg" width="237" height="198" alt="1" /></li>
                                     <li>
-                                        <img src="http://202.206.214.254/img/2.jpg" width="200" height="150" alt="2" /></li>
+                                        <img src="http://202.206.214.254/img/2.jpg" width="237" height="198"  alt="2" /></li>
                                     <li>
-                                        <img src="http://202.206.214.254/img/3.jpg" width="200" height="150" alt="3" /></li>
+                                        <img src="http://202.206.214.254/img/3.jpg" width="237" height="198"  alt="3" /></li>
                                     <li>
-                                        <img src="http://202.206.214.254/backOffice/ckfinder/userfiles/images/image003.jpg" width="200" height="150" alt="4" /></li>
+                                        <img src="http://202.206.214.254/backOffice/ckfinder/userfiles/images/image003.jpg" width="237" height="198"  alt="4" /></li>
                                     <li>
-                                        <img src="http://news.ncepu.edu.cn/images/content/2015-10/20151019160938882500.jpg" width="200" height="150" alt="4" /></li>
+                                        <img src="http://news.ncepu.edu.cn/images/content/2015-10/20151019160938882500.jpg" width="237" height="198"  alt="5" /></li>
                                 </ul>
                             </div>
                             <div class="juzhong">
@@ -243,7 +256,12 @@
                         </div>
 
                     </div>
-
+                    
+<img src="img/home-content-shadow.png" alt="" class="home-content-shadow" style="
+    margin-left: 1px;
+    height: 260px;
+    margin-top: -70px;
+">
                     <div id="bottom_right_side">
                         <div class="notice-wrap" id="netServiceWrap">
                             <ul class="notice-class">
@@ -256,6 +274,17 @@
 
                     </div>
 
+					<div id="more_service_side">
+                        <div class="notice-wrap" id="moreServiceWrap">
+                            <ul class="notice-class">
+                                <li class="notice-class-active"><a href="#">更多服务</a>
+                                </li>
+                                <div class="clearfix"></div>
+                            </ul>
+
+                        </div>
+
+                    </div>
                     <div class="clearfix"></div>
                 </div>
 
@@ -274,186 +303,9 @@
     </div>
 
     <script src="js/jquery-3.3.1.js" type="text/javascript"></script>
-    <script src="js/index.js"></script>
-
-
-    <script>
-        $.ajax({
-            type: "get",
-            url: location.protocol + "//" + window.location.host +
-                "/Library/section/getAllChildrenByPid?pid=A5EB59D1CAD44311806EF4DCE64AAF07",
-            dataType: "json",
-            success: function(response) {
-                var $netServiceWrap = $('#netServiceWrap');
-                for (let i = 0; i < response.data.length; i++) {
-                    const child = response.data[i];
-
-                    // 分情况赋不同的图片
-                    if (i % 3 == 0) {
-                        var $div = `<div class="nettwo"><a href="${child.address}?sectionId=${child.id}">
-        <img src="image/rule.jpg" /></a></div>`;
-                    } else if (i % 3 == 1) {
-                        var $div = `<div class="nettwo"><a href="${child.address}?sectionId=${child.id}">
-        <img src="image/ipdownlod.png" /></a></div>`;
-                    } else if (i % 3 == 2) {
-                        var $div = `<div class="nettwo"><a href="${child.address}?sectionId=${child.id}">
-        <img src="image/拓扑图.png" /></a></div>`;
-                    }
-
-                    $netServiceWrap.append($div);
-
-                }
-            }
-        });
-    </script>
-    <script>
-        var $wrap = $('#tab');
-        // 获取所有的版块信息
-        $.ajax({
-            type: "get",
-            url: location.protocol + "//" + window.location.host + "/Library/section/getAllParents",
-            dataType: "json",
-            async: false,
-            success: function(response) {
-                console.log(response.msg);
-                // 206为查找成功码
-                if (response.code == 206) {
-                    var parentsList = response.data;
-                    for (let i = 0; i < parentsList.length; i++) {
-                        // 获取每一个父项目
-                        const parent = parentsList[i];
-
-                        // 跳过新闻公告和网络服务的显示
-                        if (parent.name == '新闻公告' || parent.name == '网络服务') {
-                            continue;
-                        }
-                        // 显示父项目名称
-                        var $dt = `<dt> ${parent.name} </dt>`;
-                        $wrap.append($dt);
-
-                        // 判断该父项目下是否有子项目
-                        if (parent.childrenSection.length > 0) {
-                            var $dd = $('<dd></dd>');
-                            // 如果取余为0 则加一取余  得对应的样式
-                            if (i % 5 == 0) {
-                                $dd.addClass(`img_${(i+1)%5}`);
-                            } else {
-                                $dd.addClass(`img_${i%5}`);
-                            }
-
-                            var $li = $("<li></li>");
-                            // 子项目的循环展示
-                            for (let j = 0; j < parent.childrenSection.length; j++) {
-                                const child = parent.childrenSection[j];
-                                var $a =
-                                    `<a href = "${child.address}?sectionId=${child.id}"> 
-                                                        <div id="ff" width="120" height="30"> ${child.name} </div> </a>`;
-                                $li.append($a);
-                            }
-                            $dd.append($li);
-
-                            $wrap.append($dd);
-                        }
-                    }
-                }
-            }
-        });
-    </script>
-
-    <script>
-        try {
-            function id(elem) {
-                return document.getElementById(elem)
-            }
-
-            function show(elem) {
-                elem.style.display = "";
-            }
-
-            function hide(elem) {
-                elem.style.display = "none";
-            }
-
-            function next(elem) {
-                do {
-                    elem = elem.nextSibling;
-                } while (elem && elem.nodeType != 1);
-                return elem;
-            }
-
-            function tab(a, p) {
-                var p = (p === undefined) ? {
-                        e: "onclick",
-                        n: 1
-                    } : p,
-                    node = id(a).firstChild;
-                x = [];
-                p.e = (p.e === undefined) ? "onclick" : p.e;
-                p.n = (p.n === undefined) ? 1 : p.n;
-                node = (node.nodeType !== 1) ? next(node) : node;
-                for (var i = 1, node; node; i++, node = next(node)) {
-                    x[i] = node;
-                }
-                for (var i = 1; x[i]; i++) {
-                    if (i % 2 == 0) {
-                        hide(x[i]);
-                        x[i - 1].id = a + (i / 2)
-                    }
-                    x[p.n * 2 - 1].className = "cur";
-                    show(x[p.n * 2]);
-                    temp = function(i) {
-                        if (i % 2 == 1) {
-                            x[i][p.e] = function() {
-                                for (var j = 1; x[j]; j++) {
-                                    if (j % 2 == 0) {
-                                        hide(x[j]);
-                                        x[j - 1].className = ""
-                                    }
-                                }
-                                show(x[i + 1]);
-                                x[i].className = "cur"
-                            }
-                        } else {
-                            return null
-                        }
-                    }(i)
-                }
-            }
-
-            tab("tab", {
-                e: "onmouseover",
-                n: 1
-            });
-
-        } catch (Exception) {
-
-
-        }
-    </script>
-    <script>
-        $.ajax({
-            type: "get",
-            // 并上新闻的sectionId  默认取第一页数据
-            url: location.protocol + "//" + window.location.host +
-                "/Library/news/getNewsBySectionWithPage?pageNum=1&pageSize=12&sectionId=5CC74DC0472C4FBEBAF5CCECD16FA67F",
-            dataType: "json",
-            async: false,
-            success: function(response) {
-                // 206为查询成功的码
-                if (response.code == 206) {
-                    var ulSource = $('#ulSource');
-                    console.log(response.msg);
-                    var list = response.data.list;
-                    for (let index = 0; index < list.length; index++) {
-                        // 循环建立li标签
-                        const element = list[index];
-                        var $li = `<li> <a href="next.html?id=${element.id}"> ${element.title} </li>`;
-                        ulSource.append($li);
-                    }
-                }
-            }
-        });
-    </script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js" type="text/javascript"></script>
+	<script src="js/loadInfo.js" type="text/babel"></script>
+    <script src="js/index.js" type="text/javascript"></script>
 
 </body>
 

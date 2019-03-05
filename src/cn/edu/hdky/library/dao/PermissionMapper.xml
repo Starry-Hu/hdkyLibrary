@@ -2,20 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.hdky.library.dao.PermissionMapper">
   <resultMap id="BaseResultMap" type="cn.edu.hdky.library.bean.Permission">
-    <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="pid" jdbcType="INTEGER" property="pid" />
-    <result column="zindex" jdbcType="INTEGER" property="zindex" />
-    <result column="istype" jdbcType="INTEGER" property="istype" />
-    <result column="descpt" jdbcType="VARCHAR" property="descpt" />
-    <result column="code" jdbcType="VARCHAR" property="code" />
-    <result column="icon" jdbcType="VARCHAR" property="icon" />
-    <result column="page" jdbcType="VARCHAR" property="page" />
-    <result column="isdel" jdbcType="INTEGER" property="isdel" />
-    <result column="createUser" jdbcType="VARCHAR" property="createuser" />
-    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="updateUser" jdbcType="VARCHAR" property="updateuser" />
-    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="admin_id" jdbcType="VARCHAR" property="adminId" />
+    <result column="section_id" jdbcType="VARCHAR" property="sectionId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -76,8 +64,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, pid, zindex, istype, descpt, code, icon, page, isdel, createUser, createTime, 
-    updateUser, updateTime
+    admin_id, section_id
   </sql>
   <select id="selectByExample" parameterType="cn.edu.hdky.library.bean.PermissionExample" resultMap="BaseResultMap">
     select
@@ -94,16 +81,6 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from permission
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from permission
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
   <delete id="deleteByExample" parameterType="cn.edu.hdky.library.bean.PermissionExample">
     delete from permission
     <if test="_parameter != null">
@@ -111,105 +88,25 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.edu.hdky.library.bean.Permission">
-    insert into permission (id, name, pid, 
-      zindex, istype, descpt, 
-      code, icon, page, isdel, 
-      createUser, createTime, updateUser, 
-      updateTime)
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}, 
-      #{zindex,jdbcType=INTEGER}, #{istype,jdbcType=INTEGER}, #{descpt,jdbcType=VARCHAR}, 
-      #{code,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{page,jdbcType=VARCHAR}, #{isdel,jdbcType=INTEGER}, 
-      #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, 
-      #{updatetime,jdbcType=TIMESTAMP})
+    insert into permission (admin_id, section_id)
+    values (#{adminId,jdbcType=VARCHAR}, #{sectionId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.hdky.library.bean.Permission">
     insert into permission
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
+      <if test="adminId != null">
+        admin_id,
       </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="pid != null">
-        pid,
-      </if>
-      <if test="zindex != null">
-        zindex,
-      </if>
-      <if test="istype != null">
-        istype,
-      </if>
-      <if test="descpt != null">
-        descpt,
-      </if>
-      <if test="code != null">
-        code,
-      </if>
-      <if test="icon != null">
-        icon,
-      </if>
-      <if test="page != null">
-        page,
-      </if>
-      <if test="isdel != null">
-        isdel,
-      </if>
-      <if test="createuser != null">
-        createUser,
-      </if>
-      <if test="createtime != null">
-        createTime,
-      </if>
-      <if test="updateuser != null">
-        updateUser,
-      </if>
-      <if test="updatetime != null">
-        updateTime,
+      <if test="sectionId != null">
+        section_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=VARCHAR},
+      <if test="adminId != null">
+        #{adminId,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="pid != null">
-        #{pid,jdbcType=INTEGER},
-      </if>
-      <if test="zindex != null">
-        #{zindex,jdbcType=INTEGER},
-      </if>
-      <if test="istype != null">
-        #{istype,jdbcType=INTEGER},
-      </if>
-      <if test="descpt != null">
-        #{descpt,jdbcType=VARCHAR},
-      </if>
-      <if test="code != null">
-        #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="icon != null">
-        #{icon,jdbcType=VARCHAR},
-      </if>
-      <if test="page != null">
-        #{page,jdbcType=VARCHAR},
-      </if>
-      <if test="isdel != null">
-        #{isdel,jdbcType=INTEGER},
-      </if>
-      <if test="createuser != null">
-        #{createuser,jdbcType=VARCHAR},
-      </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateuser != null">
-        #{updateuser,jdbcType=VARCHAR},
-      </if>
-      <if test="updatetime != null">
-        #{updatetime,jdbcType=TIMESTAMP},
+      <if test="sectionId != null">
+        #{sectionId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -222,47 +119,11 @@
   <update id="updateByExampleSelective" parameterType="map">
     update permission
     <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=VARCHAR},
+      <if test="record.adminId != null">
+        admin_id = #{record.adminId,jdbcType=VARCHAR},
       </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pid != null">
-        pid = #{record.pid,jdbcType=INTEGER},
-      </if>
-      <if test="record.zindex != null">
-        zindex = #{record.zindex,jdbcType=INTEGER},
-      </if>
-      <if test="record.istype != null">
-        istype = #{record.istype,jdbcType=INTEGER},
-      </if>
-      <if test="record.descpt != null">
-        descpt = #{record.descpt,jdbcType=VARCHAR},
-      </if>
-      <if test="record.code != null">
-        code = #{record.code,jdbcType=VARCHAR},
-      </if>
-      <if test="record.icon != null">
-        icon = #{record.icon,jdbcType=VARCHAR},
-      </if>
-      <if test="record.page != null">
-        page = #{record.page,jdbcType=VARCHAR},
-      </if>
-      <if test="record.isdel != null">
-        isdel = #{record.isdel,jdbcType=INTEGER},
-      </if>
-      <if test="record.createuser != null">
-        createUser = #{record.createuser,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createtime != null">
-        createTime = #{record.createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.updateuser != null">
-        updateUser = #{record.updateuser,jdbcType=VARCHAR},
-      </if>
-      <if test="record.updatetime != null">
-        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      <if test="record.sectionId != null">
+        section_id = #{record.sectionId,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -271,84 +132,10 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update permission
-    set id = #{record.id,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARCHAR},
-      pid = #{record.pid,jdbcType=INTEGER},
-      zindex = #{record.zindex,jdbcType=INTEGER},
-      istype = #{record.istype,jdbcType=INTEGER},
-      descpt = #{record.descpt,jdbcType=VARCHAR},
-      code = #{record.code,jdbcType=VARCHAR},
-      icon = #{record.icon,jdbcType=VARCHAR},
-      page = #{record.page,jdbcType=VARCHAR},
-      isdel = #{record.isdel,jdbcType=INTEGER},
-      createUser = #{record.createuser,jdbcType=VARCHAR},
-      createTime = #{record.createtime,jdbcType=TIMESTAMP},
-      updateUser = #{record.updateuser,jdbcType=VARCHAR},
-      updateTime = #{record.updatetime,jdbcType=TIMESTAMP}
+    set admin_id = #{record.adminId,jdbcType=VARCHAR},
+      section_id = #{record.sectionId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.hdky.library.bean.Permission">
-    update permission
-    <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="pid != null">
-        pid = #{pid,jdbcType=INTEGER},
-      </if>
-      <if test="zindex != null">
-        zindex = #{zindex,jdbcType=INTEGER},
-      </if>
-      <if test="istype != null">
-        istype = #{istype,jdbcType=INTEGER},
-      </if>
-      <if test="descpt != null">
-        descpt = #{descpt,jdbcType=VARCHAR},
-      </if>
-      <if test="code != null">
-        code = #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="icon != null">
-        icon = #{icon,jdbcType=VARCHAR},
-      </if>
-      <if test="page != null">
-        page = #{page,jdbcType=VARCHAR},
-      </if>
-      <if test="isdel != null">
-        isdel = #{isdel,jdbcType=INTEGER},
-      </if>
-      <if test="createuser != null">
-        createUser = #{createuser,jdbcType=VARCHAR},
-      </if>
-      <if test="createtime != null">
-        createTime = #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateuser != null">
-        updateUser = #{updateuser,jdbcType=VARCHAR},
-      </if>
-      <if test="updatetime != null">
-        updateTime = #{updatetime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="cn.edu.hdky.library.bean.Permission">
-    update permission
-    set name = #{name,jdbcType=VARCHAR},
-      pid = #{pid,jdbcType=INTEGER},
-      zindex = #{zindex,jdbcType=INTEGER},
-      istype = #{istype,jdbcType=INTEGER},
-      descpt = #{descpt,jdbcType=VARCHAR},
-      code = #{code,jdbcType=VARCHAR},
-      icon = #{icon,jdbcType=VARCHAR},
-      page = #{page,jdbcType=VARCHAR},
-      isdel = #{isdel,jdbcType=INTEGER},
-      createUser = #{createuser,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
-      updateUser = #{updateuser,jdbcType=VARCHAR},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

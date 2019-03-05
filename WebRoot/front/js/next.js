@@ -5,7 +5,7 @@ $(function() {
     $('#homePage').attr('href', home);
 
     // 设置新闻列表a地址
-    var lista = location.protocol + "//" + window.location.host + "/Library/front/newsList.html";
+    var lista = location.protocol + "//" + window.location.host + "/Library/front/more.html";
     $('#newsList').attr('href', lista);
 
     // 载入相应内容

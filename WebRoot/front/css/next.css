@@ -276,13 +276,14 @@
         }
         
         .footer {
-            position: absolute;
+            position: relative;
             left: 50%;
             bottom: 0;
             margin-left: -575px;
             width: 1150px;
             height: 80px;
             background-color: #fff;
+            top:38px;
         }
         
         .homepage-footer {
@@ -308,22 +309,23 @@
         }
         
         .content{
-            margin: 10px 80px;
+            margin: 20px 80px;
             text-align: left;
             line-height: 60px;
             font-size: 18px;
            
         }
         
-        .content h1 {
+        /*.content h1 {
             font-size: 25px;
             color: rgba(83, 126, 171, 0.87);
             margin-top: 20px;
             margin-bottom: 30px;
+            text-align: center;
         } 
         
         /* 注释p  为所有的文字都添加上样式*/
-        .content p {
+        /*.content p {
             color: dimgrey;
             margin: 10px 80px;
             text-indent: 2em;
@@ -340,7 +342,6 @@
         .content p:last-child {
             margin-bottom: 30px;
         }
-        /*下载文件的a标签 */
         .content a {
             font-size: 14px;
-        } 
+        }*/ 

@@ -6,7 +6,6 @@
     <result column="adminId" jdbcType="VARCHAR" property="adminid" />
     <result column="adminName" jdbcType="VARCHAR" property="adminname" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="type" jdbcType="INTEGER" property="type" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="createUser" jdbcType="VARCHAR" property="createuser" />
     <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
@@ -72,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, adminId, adminName, password, type, createTime, createUser, updateTime, updateUser, 
+    id, adminId, adminName, password, createTime, createUser, updateTime, updateUser, 
     isDel
   </sql>
   <select id="selectByExample" parameterType="cn.edu.hdky.library.bean.AdminExample" resultMap="BaseResultMap">
@@ -108,13 +107,13 @@
   </delete>
   <insert id="insert" parameterType="cn.edu.hdky.library.bean.Admin">
     insert into admin (id, adminId, adminName, 
-      password, type, createTime, 
-      createUser, updateTime, updateUser, 
-      isDel)
+      password, createTime, createUser, 
+      updateTime, updateUser, isDel
+      )
     values (#{id,jdbcType=VARCHAR}, #{adminid,jdbcType=VARCHAR}, #{adminname,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{createuser,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, 
-      #{isdel,jdbcType=INTEGER})
+      #{password,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{createuser,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, #{isdel,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.hdky.library.bean.Admin">
     insert into admin
@@ -130,9 +129,6 @@
       </if>
       <if test="password != null">
         password,
-      </if>
-      <if test="type != null">
-        type,
       </if>
       <if test="createtime != null">
         createTime,
@@ -162,9 +158,6 @@
       </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=INTEGER},
       </if>
       <if test="createtime != null">
         #{createtime,jdbcType=TIMESTAMP},
@@ -204,9 +197,6 @@
       <if test="record.password != null">
         password = #{record.password,jdbcType=VARCHAR},
       </if>
-      <if test="record.type != null">
-        type = #{record.type,jdbcType=INTEGER},
-      </if>
       <if test="record.createtime != null">
         createTime = #{record.createtime,jdbcType=TIMESTAMP},
       </if>
@@ -233,7 +223,6 @@
       adminId = #{record.adminid,jdbcType=VARCHAR},
       adminName = #{record.adminname,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=INTEGER},
       createTime = #{record.createtime,jdbcType=TIMESTAMP},
       createUser = #{record.createuser,jdbcType=VARCHAR},
       updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
@@ -254,9 +243,6 @@
       </if>
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        type = #{type,jdbcType=INTEGER},
       </if>
       <if test="createtime != null">
         createTime = #{createtime,jdbcType=TIMESTAMP},
@@ -281,7 +267,6 @@
     set adminId = #{adminid,jdbcType=VARCHAR},
       adminName = #{adminname,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      type = #{type,jdbcType=INTEGER},
       createTime = #{createtime,jdbcType=TIMESTAMP},
       createUser = #{createuser,jdbcType=VARCHAR},
       updateTime = #{updatetime,jdbcType=TIMESTAMP},

@@ -11,8 +11,6 @@ public class Admin {
 
     private String password;
 
-    private Integer type;
-
     private Date createtime;
 
     private String createuser;
@@ -53,14 +51,6 @@ public class Admin {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
     }
 
     public Date getCreatetime() {
