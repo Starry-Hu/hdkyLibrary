@@ -27,10 +27,19 @@ public class MyInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		// 获取请求的url
-		// String url = request.getRequestURI();
+		// String url2 = request.getRequestURI();
 		// 获取发送请求的html
 		String url = request.getHeader("Referer");
 		System.out.println(url);
+
+		// 判断是否是从8080或者Library直接映射过来(到front/index.html)
+		// 此时直接放行
+		int length = url.length();
+		// || url.indexOf("Library") == length - 8
+		if (url.indexOf("8080") == length - 5 ) {
+			return true;
+		}
+
 		// 判断url是否是公开 地址（实际使用时将公开 地址配置配置文件中）
 		// 这里公开地址是登陆提交的地址
 		if (url.indexOf("login") >= 0 || url.indexOf("front") >= 0) {
@@ -49,7 +58,7 @@ public class MyInterceptor implements HandlerInterceptor {
 		System.out.println("跳转");
 		redirect(request, response);
 		return false;
-		
+
 		// 执行这里表示用户身份需要认证，跳转登陆页面
 		// request.getRequestDispatcher("/Library/manage/login.html").forward(request,response);
 		// response.sendRedirect("/Library/manage/login.html");

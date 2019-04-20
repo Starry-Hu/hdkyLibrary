@@ -79,12 +79,12 @@
         var str = window.location.href;
         var sectionId = str.substr(str.indexOf('=') + 1);
 
-        var totalPage = getNewsByPage(1, 14, sectionId);
+        var totalPage = getNewsByPage(1, 15, sectionId);
         $('#pageDemo').pagination({
             pageCount: totalPage,
             jump: true,
             callback: function(api) {
-                getNewsByPage(api.getCurrent, 14, sectionId);
+                getNewsByPage(api.getCurrent, 15, sectionId);
             }
         });
     </script>

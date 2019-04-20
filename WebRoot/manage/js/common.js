@@ -219,7 +219,7 @@ $.ajaxSetup({
  function getNewsByPage(pageNum, pageSize, sectionId) {
      var path = location.protocol + "//" + window.location.host + "/Library/news/getNewsBySectionWithPage";
      // 数目总页数
-     var totalPage = 10;
+     var totalPage = 0;
      $.ajax({
          type: "get",
          url: path,

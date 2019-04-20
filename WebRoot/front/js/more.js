@@ -5,7 +5,7 @@ $(function() {
 
         // 新闻所在的sectionId
         var sectionId = '5CC74DC0472C4FBEBAF5CCECD16FA67F';
-         var totalPage = getNewsByPage(1, 15, sectionId);
+        var totalPage = getNewsByPage(1, 15, sectionId);
         $('#pageDemo').pagination({
             pageCount: totalPage,
             jump: true,
@@ -28,18 +28,19 @@ $(function() {
         $.ajax({
             type: "get",
             url: path,
-            async: false, //很重要
             data: {
                 sectionId: sectionId,
                 pageNum: pageNum,
                 pageSize: pageSize,
             },
+            async:false,
             dataType: "json",
             success: function(response) {
                 // 206为查找成功的码
                 if (response.code == 206) {
                     totalPage = response.data.totalPage;
                     var $tbody = $('#tbody');
+                    
                     // 清空原tbody
                     $tbody.html('');
                     for (let i = 0; i < response.data.list.length; i++) {

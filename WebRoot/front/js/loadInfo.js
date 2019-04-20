@@ -24,7 +24,6 @@ function getMoreService () {
 	// 显示各室电话
 	$.ajax({
             type: "get",
-			async: false,
             url: location.protocol + "//" + window.location.host +
                 "/Library/section/getSectionByCid?cid=4E58B63DD27A49FA8031C7C4FACADF2C",
             dataType: "json",
@@ -43,7 +42,6 @@ function getMoreService () {
 function getNetService () {
         $.ajax({
             type: "get",
-            async: false,
             url: location.protocol + "//" + window.location.host +
                 "/Library/section/getAllChildrenByPid?pid=A5EB59D1CAD44311806EF4DCE64AAF07",
             dataType: "json",
@@ -80,7 +78,7 @@ function getAllItems() {
             type: "get",
             url: location.protocol + "//" + window.location.host + "/Library/section/getAllParents",
             dataType: "json",
-            async: false,
+            async: false, //防止切换js不执行
             success: function(response) {
                 // 206为查找成功码
                 if (response.code == 206) {
@@ -130,11 +128,10 @@ function getAllItems() {
 function getTopNews() {
 	 $.ajax({
             type: "get",
-            // 并上新闻的sectionId  默认取第一页数据
+            // 并上新闻的sectionId  默认取前十条数据
             url: location.protocol + "//" + window.location.host +
                 "/Library/news/getNewsBySectionWithPage?pageNum=1&pageSize=10&sectionId=5CC74DC0472C4FBEBAF5CCECD16FA67F",
             dataType: "json",
-            async: false,
             success: function(response) {
                 // 206为查询成功的码
                 if (response.code == 206) {

@@ -136,12 +136,7 @@ window.onload = function () {
     }
     
     $(function () {
-    	// 初始化搜索
-        TabbedContent.init();
-        searchContentDrop();
-        searchContentChange();
-        
-        //获取新闻信息
+    	 //获取新闻信息
 		getTopNews();
 		// 获取左下角items信息
 		getAllItems();
@@ -149,6 +144,12 @@ window.onload = function () {
 		getNetService();
 		// 获取更多服务信息
 		getMoreService();
+		
+		
+    	// 初始化搜索
+        TabbedContent.init();
+        searchContentDrop();
+        searchContentChange();
 
         $("#searchButtonContent").click(function () {
             var checkValue = $("#strSearchType").val();
@@ -258,7 +259,7 @@ window.onload = function () {
         var lxfscroll_li = $(".lxfscroll li");
         var lxfscroll_tli = $(".lxfscroll-title li");
         var lxfscroll_speed = 350;//切换的速度
-        var lxfscroll_autospeed = 2000;//自动播放的速度
+        var lxfscroll_autospeed = 3000;//自动播放的速度
         var lxfscroll_n = 0;
         var lxfscroll_imgheight = $(".lxfscroll li img").attr("height");//获取图片高度
         var lxfscroll_lilength = lxfscroll_li.length;//获取图片数量

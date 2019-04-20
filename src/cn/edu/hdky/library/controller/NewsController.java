@@ -159,6 +159,8 @@ public class NewsController extends BaseController {
 
 	/**
 	 * 获取指定版块全部新闻信息
+	 * 如果是新闻的  则返回全部新闻公告
+	 * 如果是二级版块的  则取第一条作为其新闻
 	 * 
 	 * @return
 	 * @throws Exception

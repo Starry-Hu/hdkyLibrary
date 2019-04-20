@@ -45,7 +45,7 @@ $(function() {
                 url: path,
                 data: {
                     adminId: $('#username').val(),
-                    password: $('#password').val(),
+                    password:$('#password').val(),
                 },
                 dataType: "json",
                 success: function(response) {

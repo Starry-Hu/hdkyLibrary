@@ -76,6 +76,19 @@
         getAllSectionsToTree();
     </script>
     <script type="text/javascript">
+    	// iframe高度自适应
+	    function setIframeHeight(iframe) {
+	        if (iframe) {
+	            var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+	            if (iframeWin.document.body) {
+	                iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+	            }
+	        }
+	    };
+	    window.onload = function() {
+            setIframeHeight(document.getElementById('iframePage'));
+        };
+        
         $(function() {
         	// 动态的展开
             $('.tree li.parent_li > span').on('click', function(e) {
@@ -97,6 +110,8 @@
             	// 被点击的添加样式
                 $(this).parent("span").addClass("focusChild");
             })
+            
+           
         });
     </script>
 

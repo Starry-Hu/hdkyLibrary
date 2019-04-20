@@ -19,7 +19,9 @@ $(function() {
     var path;
     // 查找的id
     var searchId = str.substr(str.indexOf('=') + 1);
-    console.log(type)
+    
+    // 如果是新闻的  则通过id直接获取
+    // 如果是二级版块的  则通过版块取数组的第一条
     if (type == 'id') {
         path = location.protocol + "//" + window.location.host +
             "/Library/news/getNewsById?id=" + searchId;

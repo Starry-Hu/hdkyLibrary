@@ -17,6 +17,7 @@ import cn.edu.hdky.library.pojo.AdminExtend;
 import cn.edu.hdky.library.service.AdminService;
 import cn.edu.hdky.library.util.DateStamp;
 import cn.edu.hdky.library.util.IDGenerator;
+import cn.edu.hdky.library.util.MD5Util;
 import cn.edu.hdky.library.util.PageBean;
 
 @Service("adminService")
@@ -33,7 +34,7 @@ public class AdminServiceImpl implements AdminService {
 		admin.setId(IDGenerator.generator());
 		admin.setAdminid(adminId);
 		admin.setAdminname(adminName);
-		admin.setPassword(password);
+		admin.setPassword(MD5Util.getMD5String(password));
 		admin.setCreatetime(date);
 		admin.setCreateuser(createUser);
 		// 默认为0 未删除
@@ -77,7 +78,7 @@ public class AdminServiceImpl implements AdminService {
 		Date date = new Date();
 		admin.setId(id);
 		admin.setAdminname(adminName);
-		admin.setPassword(password);
+		admin.setPassword(MD5Util.getMD5String(password));
 		admin.setUpdateuser(updateUser);
 		admin.setUpdatetime(date);
 
@@ -137,7 +138,7 @@ public class AdminServiceImpl implements AdminService {
 			}
 			
 			// 登录密码错误
-			if (!admin.getPassword().equals(password)) {
+			if (!admin.getPassword().equals(MD5Util.getMD5String(password))) {
 				throw new MyException(ExceptionEnum.LOGIN_PSW_ERROR);
 			}
 			

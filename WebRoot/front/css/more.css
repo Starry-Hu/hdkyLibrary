@@ -169,10 +169,9 @@ a {
     margin: 0 auto;
     background: url(../img/top-nav-center.png) no-repeat;
     background-size: 1300px 38px;
-    left: 20px;
 }
 
-.container {
+.container-1 {
     position: relative;
     width: 1150px;
     margin: 0 auto;
@@ -280,7 +279,7 @@ a {
 
 .footer {
     position: relative;
-    left: 52%;
+    left: 50%;
     bottom: 0;
     margin-left: -575px;
     width: 1150px;
@@ -313,12 +312,13 @@ a {
 }
 
 .content {
+	text-align:left;
     height: 100%;
+    min-height: 200px;
     margin-bottom: 40px;
     margin-top: 30px;
     margin-left: 210px;
-    padding-left: 0px;
-    width: 800px;
+    padding: 0 40px;
     line-height: 35px;
 	background: url(../img/home-content-shadow.png) repeat-y;
     background-size: contain;
@@ -333,8 +333,8 @@ a {
     border-bottom: 2px solid #d0d0d0;
     top: 20px;
 }
-
-.content p:first-letter {
+ 
+/* .content p:first-letter {
     color: #3b68bb;
     font-size: 20px;
     margin-right: 10px;
@@ -342,7 +342,7 @@ a {
 
 .content p:last-child {
     margin-bottom: 50px;
-}
+} */
 
 .notice-class {
     width: 1100px;
@@ -436,6 +436,10 @@ a {
 
 .notice-content li a img {
     margin-left: 20px;
+}
+
+.notice-content tbody tr{
+	cursor: pointer;
 }
 
 .leftList {

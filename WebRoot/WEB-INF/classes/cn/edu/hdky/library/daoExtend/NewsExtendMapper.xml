@@ -92,7 +92,7 @@
 	WHERE
 	A.isDel = 0 
 	ORDER BY
-	A.createTime;
+	A.createTime DESC;
   </select>
   
   <select id="selectNewsWithPage" resultType="cn.edu.hdky.library.pojo.NewsExtend">
@@ -113,7 +113,7 @@
 	WHERE
 	A.isDel = 0 
 	ORDER BY
-	A.createTime 
+	A.createTime DESC 
 	LIMIT #{startIndex},
 	#{pageSize};
   </select>
