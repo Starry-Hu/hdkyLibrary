@@ -45,7 +45,6 @@
             </div>
             <div class="col-12" id="tips">
                 <p>注意：文本编辑器样式已固定，不必使用编辑器自带样式编辑</p>
-                <p>标题请选择H1，具体内容回车换行编辑即可，不必添加额外样式</p>
                 <p>多个文件上传时请分别上传</p>
             </div>
         </form>
@@ -75,11 +74,6 @@
         if (sectionId != null) {
             $('section').val(sectionId);
         }
-
-        var downLoad = location.protocol + "//" + window.location.host + "//upload//attachment//2019//02/25//报名表(1).docx";
-        $('#test').attr('download', downLoad);
-
-
 
         // 鼠标划开时检查必选项
         $('#title').blur(checkTitle);

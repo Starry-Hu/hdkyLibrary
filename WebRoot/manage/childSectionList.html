@@ -56,7 +56,7 @@
 
         function delSection(id) {
             if (window.confirm("您确定要删除吗？")) {
-                var path = location.protocol + "//" + window.location.host + "/Library/news/deleteNewsLogic?id=" + id;
+                var path = location.protocol + "//" + window.location.host + "/Library/section/deleteSectionLogic?id=" + id;
                 $.ajax({
                     type: "get",
                     url: path,

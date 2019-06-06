@@ -82,6 +82,7 @@
 	            var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
 	            if (iframeWin.document.body) {
 	                iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+	                iframe.style.minHeight = "800px";
 	            }
 	        }
 	    };

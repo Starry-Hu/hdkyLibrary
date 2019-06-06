@@ -290,7 +290,7 @@ a {
 
 .homepage-footer {
     padding-top: 10px;
-    margin-top: 50px;
+    margin-top: 70px;
 }
 
 .footer p {
@@ -332,6 +332,8 @@ a {
     left: 60px;
     border-bottom: 2px solid #d0d0d0;
     top: 20px;
+    width: 95%;
+    
 }
  
 /* .content p:first-letter {
@@ -406,12 +408,13 @@ a {
 .notice-content {
     display: none;
     width: 800px;
-    margin-left: 160px;
+    margin-left: 120px;
 }
 
 .notice-content td {
-    text-align: center;
     border-bottom: 1px dashed #d0d0cf;
+    border-top: none;
+    padding-left: 20px;
 }
 
 .notice-content li a {
