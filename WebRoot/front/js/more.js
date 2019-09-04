@@ -43,21 +43,21 @@ $(function() {
                     
                     // 清空原tbody
                     $tbody.html('');
-                    for (let i = 0; i < response.data.list.length; i++) {
-                        const element = response.data.list[i];
+                    for (var i = 0; i < response.data.list.length; i++) {
+                        var element = response.data.list[i];
 
                         // 获得新闻时间  年月日
 						var monthIndex = element.createTimeString.indexOf("-") + 1;
 						var createTime = element.createTimeString.substr(0,10);
                         // 获取每条新闻的信息
-                        var $td1 = `<td>${i + 1}</td>`; //序号
-                        var $td2 = `<td>${element.title}</td>`;
-                        var $td3 = `<td>${createTime}</td>`; // 发布时间
+                        var $td1 = "<td>" + i + 1 + "</td>"; //序号
+                        var $td2 = "<td>" + element.title + "</td>";
+                        var $td3 = "<td>" + createTime + "</td>"; // 发布时间
 
                         var $tr = $('<tr></tr>');
                         $tr.bind("click", function() {
                             $('this').css('background-color', '#dee2e6');
-                            var newSrc = `next.html?id=${element.id}`;
+                            var newSrc = "next.html?id=" + element.id;
                             window.open(newSrc);
                         });
                         $tr.append($td1 + $td2 + $td3);

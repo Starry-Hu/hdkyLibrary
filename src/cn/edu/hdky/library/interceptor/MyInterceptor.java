@@ -32,11 +32,11 @@ public class MyInterceptor implements HandlerInterceptor {
 		String url = request.getHeader("Referer");
 		System.out.println(url);
 
-		// 判断是否是从8080或者Library直接映射过来(到front/index.html)
+		// 判断是否是从8081或8080或者Library直接映射过来(到front/index.html)
 		// 此时直接放行
 		int length = url.length();
 		// || url.indexOf("Library") == length - 8
-		if (url.indexOf("8080") == length - 5 ) {
+		if ((url.indexOf("8081") == length - 5) || (url.indexOf("8080") == length - 5)) {
 			return true;
 		}
 

@@ -94,7 +94,7 @@ public class SectionController extends BaseController {
 	/**
 	 * 物理删除版块
 	 * 
-	 * @param id 版跨id
+	 * @param id 版块id
 	 * @return
 	 * @throws Exception
 	 */

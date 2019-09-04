@@ -16,15 +16,15 @@ function getTopNews() {
                 if (response.code == 206) {
                     var ulSource = $('#ulSource');
                     var list = response.data.list;
-                    for (let index = 0; index < list.length; index++) {
+                    for (var index = 0; index < list.length; index++) {
                         // 循环建立li标签
-                        const element = list[index];
+                        var element = list[index];
 						// 获得月开始的下标
 						var monthIndex = element.createTimeString.indexOf("-") + 1;
 						var createTime = element.createTimeString.substr(monthIndex,5);
 						// 获取标题，并控制长度
 						var title = element.title;
-                        if (title.length > 15) {
+                        if (title.length > 22) {
                             title = title.substr(0,22) + "...";
                         }
                         var $li = '<li> <a href="next.html?id=' + element.id + '" target="_blank"> ' + title + ' <span> [ ' + createTime + ' ]</span></li>';
@@ -48,9 +48,9 @@ function getAllItems() {
                 // 206为查找成功码
                 if (response.code == 206) {
                     var parentsList = response.data;
-                    for (let i = 0; i < parentsList.length; i++) {
+                    for (var i = 0; i < parentsList.length; i++) {
                         // 获取每一个父项目
-                        const parent = parentsList[i];
+                        var parent = parentsList[i];
 
                         // 跳过新闻公告和网络服务的显示
                         if (parent.name == '新闻公告' || parent.name == '网络服务') {
@@ -74,8 +74,8 @@ function getAllItems() {
 
                             var $li = $("<li></li>");
                             // 子项目的循环展示
-                            for (let j = 0; j < parent.childrenSection.length; j++) {
-                                const child = parent.childrenSection[j];
+                            for (var j = 0; j < parent.childrenSection.length; j++) {
+                                var child = parent.childrenSection[j];
                                 var $a = '<a href = "'+ child.address + '?sectionId=' + child.id + '" target="_blank">' +
                                 '<div id="ff" width="120" height="30"> ' + child.name + ' </div> </a>';
                                 $li.append($a);
@@ -140,16 +140,16 @@ function getNetService () {
             dataType: "json",
             success: function(response) {
                 var $netServiceWrap = $('#netServiceWrap');
-                for (let i = 0; i < response.data.length; i++) {
-                    const child = response.data[i];
+                for (var i = 0; i < response.data.length; i++) {
+                    var child = response.data[i];
 
                     // 分情况赋不同的图片
                     if (i % 3 == 0) {
                         var $div = '<div class="nettwo" style="margin-left: 0;"><a href="' + child.address + '?sectionId=' + child.id +'" target="_blank">'+
-                        '<img src="image/rule.png" /><p class="tuoputu">'+ child.name  + '</p></a></div>';
+                        '<img src="image/rule.png" /><p>'+ child.name  + '</p></a></div>';
                     } else if (i % 3 == 1) {
                         var $div = '<div class="nettwo"><a href="' + child.address + '?sectionId=' + child.id +'" target="_blank">'+
-                        '<img src="image/ipdownload.png" /><p class="tuoputu">'+ child.name  + '</p></a></div>';
+                        '<img src="image/ipdownload.png" /><p>'+ child.name  + '</p></a></div>';
                     } else if (i % 3 == 2) {
                         var $div = '<div class="nettwo"><a href="' + child.address + '?sectionId=' + child.id +'" target="_blank">'+
                         '<img src="image/tuoputu.png" /><p class="tuoputu">'+ child.name  + '</p></a></div>';
